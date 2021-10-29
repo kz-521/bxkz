@@ -1,0 +1,103 @@
+/* pages/membershipCard/membershipCard.wxss */
+.main{ 
+  width: 100%;
+  height: 100%;
+}
+/* .open_swiper{
+  background-color: pink;
+} */
+.pay-tip{
+  margin: 40rpx 40rpx 0 40rpx;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+.pay_need_konw{
+  width:100%;
+  margin:40rpx 0 0 0 
+}
+.explain {
+  margin: 10rpx 40rpx 120rpx 40rpx;
+  color: #666;
+  width: 90%;
+  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+}
+.swiper1{
+  box-sizing: border-box;
+  padding: 0 60rpx 0 48rpx;
+  margin: 60rpx 54rpx 0 56rpx ;
+  height: 360rpx;
+  width: 640rpx;
+  background-color: #3fd572;
+  border-radius: 16rpx;
+  box-shadow: 0rpx 10rpx 20rpx #999;
+  display: flex;
+}
+.left{
+  width: 312rpx;
+  height: 100%;
+  /* background-color: red; */
+}
+.small_title{
+  margin-top:108rpx;
+  font-size:36rpx;
+  color:#fff
+}
+.big_title{
+  margin-bottom: 108rpx;
+  font-size: 52rpx;
+  color: #fff;
+}
+.right{
+  width: 214rpx;
+  height: 100%;
+  /* background-color: #fff; */
+}
+.card_image{
+  width:214rpx;
+  height:284rpx;
+  margin-top:38rpx
+}
+.huiyuan{
+  display: block!important;
+  height: 360rpx;
+  width: 640rpx;
+}
+.card_content{
+  box-sizing: border-box;
+  padding: 0 26rpx 0 24rpx;
+  /* background-color:rgb(248, 248, 248); */
+}
+.content_title{
+  font-size: 32rpx;
+  box-sizing: border-box;
+  margin: 38rpx 0 ;
+  font-weight: 700;
+  /* background-color:rgb(248, 248, 248); */
+}
+
+.content_text{
+  font-size: 28rpx;
+  /* background-color:rgb(248, 248, 248); */
+}
+.pay_box{
+  position: fixed;
+  bottom: 0;
+  height: 196rpx;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  background-color:rgb(255, 255, 255);
+}
+.pay_box>button{
+  margin-top: 20rpx;
+  width: 672rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  color: #fff;
+  width: 90%;
+  border-radius: 0;
+  background-color: #3fd572;
+}

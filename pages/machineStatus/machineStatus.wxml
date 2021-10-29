@@ -1,0 +1,96 @@
+<!--machineStatus.wxml-->
+
+<!-- 用户处理页面数据，保留两位小数点 -->
+<wxs module="m1">
+     var toFixedFn = function(num) {
+       if((num % 1) === 0) {
+        return Number(num).toFixed(0)
+       }else{
+        return Number(num).toFixed(2)
+       }
+    // return Number(num).toFixed(2)
+  }
+  module.exports = {
+    toFixedFn:toFixedFn,
+  };
+  </wxs>
+
+<view style='display:flex;flex-direction:column;height:100vh'>
+<!-- 轮播图 公告  -->
+      <view class="swiper" wx:if="{{hadOpenBluetooth}}"> 
+        <view>
+          <image src="../../images/map/laba.png" class="weiper-image"/>
+        </view>
+        <swiper class="swiper-box" 
+                autoplay="{{autoplay}}" 
+                interval="{{interval}}" 
+                duration="{{duration}}" 
+                vertical="{{vertical}}" 
+                circular='{{circular}}'>
+          <block wx:for="{{background}}" wx:key="*this">
+          <swiper-item class="swiper-item">
+            <view class="swiper-item {{item}}">
+              <text class="swiper-text">{{item.text}}</text>
+            </view>
+          </swiper-item>
+        </block>
+        </swiper>
+      </view> 
+
+ <!-- 地图 map  个性化秘钥 需要高版本基础库支撑 subkey="VYUBZ-LNCCU-LJCVJ-2C6MK-U4CH5-N4BH7"  -->
+  <map scale="{{scale}}" 
+       longitude='{{longitude}}' 
+       latitude='{{latitude}}'
+       subkey="{{subkey}}" 
+       show-location 
+       id='statusMap' 
+       polygons="{{polygons}}" 
+       style="width:100%;flex:1"></map>
+<!-- 下方借车盒子 -->
+    <view class="borrow-box">
+    <view class="borrow-top">
+      <view style="margin-right: 18rpx">
+      <!-- 借车小图片 -->
+        <image src="/images/machineStatus/huanche_icon@3x.png" style="height: 88rpx;width:88rpx"></image>
+      </view>
+      <view class="top-title">
+        <text style="font-size:26rpx;color:333">骑行前请检查车辆轮胎及刹车是否完好</text>
+        <view wx:if="{{dispatchConfig}}" style="font-size: 28rpx;color: #333;display: flex;align-items: center">违规还车调度费用
+          <block>
+            站外<view style="color: red;font-size:28rpx">{{dispatchConfig.parkPointFee}}元</view>
+          </block>
+          ，区外<view style="color: red;font-size:28rpx">{{dispatchConfig.areaFee}}元</view>
+        </view>
+      </view>
+    </view>
+    <!-- 下部分 -->
+    <view class="bottom-status"> 
+      <view class="bottom-soc">
+        <view style="margin-right: 20rpx; font-size:28rpx">NO:{{machineNO}}</view>
+          <image src="/images/machineStatus/dianliang{{socNumber > 80 ? '5' : (socNumber > 60 ? '4' : (socNumber > 40 ? '3' : (socNumber > 20 ? '2' :(socNumber > 0 ? '1' : '0'))))}}.png"></image>
+        <view style="color:#999;font-size:26rpx">
+          可骑行 <text style="color:#333">{{surplusMileage}}</text> 公里
+        </view>
+      </view>
+      <block>
+        <view wx:if="{{baseTime_C}}" style="color: #333;font-size: 28rpx">{{baseTime_C}}</view>
+        <view style="display: flex;align-items: center" catchtap="showRule">
+          <text style="color: #333;font-size: 28rpx">{{baseTime_A}}</text> 
+          <image style="width:28rpx;height:28rpx;margin-left:4rpx" src="../../images/map/query.png" catchtap="showRule"> </image>
+        </view>
+      </block>
+      <view>如遇故障两分钟内还车免费</view>
+      <view class="change-box">
+        <button class="change_car" bindtap="exchange">换一辆</button>
+        <button class="yes_open_lock" bindtap="unlock">确认开锁</button>
+      </view>
+    </view>
+  </view>
+  <ad-dialog setTop="50%" 
+             visible="{{guideDialog}}" 
+             mainColor="{{mainColor}}" 
+             textColor="{{textColor}}" 
+             bind:knownTap="knownTap" 
+             imgUrls="{{boundImage}}"></ad-dialog>
+</view>
+<billing ruleShow="{{ruleShow}}"></billing>

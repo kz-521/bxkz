@@ -1,0 +1,100 @@
+<view>
+  <view class="main">
+<!-- 保修扫码 -->
+<view class="saoma">
+<!-- 保修扫码 input -->
+<view class="input">
+  <input class="input" 
+         type="number" 
+         maxlength="9" 
+         bindinput="inputTitle" 
+         value="{{machineNO}}" 
+         placeholder="输入车辆编号或扫描二维码"/>
+</view>
+<!-- 二维码 -->
+<view class="erweima" bindtap="openScanCode">
+  <image style="width:40rpx;height:40rpx;margin-top:10rpx;transform:translate(0,25%);" src="../../images/erweima.png"></image>
+</view>
+</view>
+<!-- 选择故障部位 -->
+<view class="bad_title">
+  选择故障部位
+</view>
+<!-- 选择故障部位的img占位盒子 -->
+<view class="bad_image_box">
+  <view  class="item" catchtap="change" data-num="1"> 
+    <image wx:if="{{error1}}" src="../../images/maintain/car1.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car11.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="item"  catchtap="change" data-num="2"> 
+    <image wx:if="{{error2}}" src="../../images/maintain/car2.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car22.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="item"  catchtap="change" data-num="3"> 
+    <image wx:if="{{error3}}" src="../../images/maintain/car3.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car33.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="item" catchtap="change" data-num="4"> 
+    <image wx:if="{{error4}}" src="../../images/maintain/car4.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car44.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="other_item" catchtap="change" data-num="5">
+    <image wx:if="{{error5}}" src="../../images/maintain/car5.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car55.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="other_item" catchtap="change" data-num="6">
+    <image wx:if="{{error6}}" src="../../images/maintain/car6.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car66.png" style="width:100%;height:100%;"></image>
+  </view>
+  <view class="other_item"  catchtap="change" data-num="7">
+    <image wx:if="{{error7}}" src="../../images/maintain/car7.png" style="width:100%;height:100%;"></image>
+    <image wx:else src="../../images/maintain/car77.png" style="width:100%;height:100%;"></image>
+  </view>
+</view>
+
+<view style="width:702rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+<view wx:if="{{!error1}}" class="{{ !carError?  'car_item_no' : 'car_item'  }}" catchtap="getError">车头</view>
+</view>
+
+<!-- 故障描述 -->
+  <view class="other_bad">
+    <view style="overflow:hidden;">
+      <textarea placeholder="其他车辆问题描述。" 
+                maxlength="200" 
+                class="inputContent"  
+                value="{{fault}}" 
+                bindinput="bindTextAreaBlur"/>
+    </view>
+    <view class="num">
+      <text>  {{fault.length }}/200</text>
+    </view>
+</view>
+
+<!-- 拍摄故障部位 的title -->
+<view class="bad_title">拍摄故障部位</view>
+
+<!-- 拍摄 故障照片 -->
+<view wx:if="{{imgUrls.length == 0}}" class="photo" bindtap="chooseImage">十</view>
+<view wx:else>
+  <view wx:for="{{imgUrls}}" wx:key="index" class="bad">
+      <image bindtap="chooseImage" 
+             mode="aspectFill" 
+             src='{{item}}' 
+             class="photo border"></image>
+      <icon class="delete"
+            catchtap="deleteImage" 
+            wx:if="{{imageIds}}" 
+            data-index="{{index}}"
+            type="clear" 
+            size="20" 
+            color="#ff2321"></icon>
+    </view>
+</view>
+
+<!-- 顶部固定提交按钮 -->
+  </view>
+  <view class="button">
+    <button class="submit" bindtap="commitFault">提交</button>
+  </view>
+</view>
+

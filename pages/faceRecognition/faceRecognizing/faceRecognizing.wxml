@@ -1,0 +1,27 @@
+<view class="takephoto">
+  <view class="distinguishing">
+    <!-- <view class="tip_max">正在识别</view>
+    <view class="tip_min">请保持面部位于人脸识别区域中</view> -->
+  </view> 
+  <view class="camera">
+    <!-- <canvas class="progress_bg" canvas-id="canvasProgressbg"></canvas>
+    <canvas class="progress_canvas" canvas-id="canvasProgress"></canvas> -->
+    <!-- <camera id='camera' device-position="front" bindinitdone="startdrawCanvas" flash="off" binderror="error">
+      <cover-view class='cameraGai'>
+        <cover-image src='../../../images/faceRecognize/circle.png' class='cover-image'></cover-image>
+      </cover-view>
+    </camera> -->
+  </view>
+
+  <view class="controlPhoto">
+        <!-- <view class="cameraImg">
+          <image src="../../../images/camera.png" mode="aspectFit"></image>
+        </view>
+        <view class="takePhoto" catchtap="startPhoto">
+          <button style="background-color:{{mainColor}};color:{{textColor}};">拍照</button>
+        </view> -->
+      </view>
+
+  <!-- <view class="complete" bindtap="complateDis" wx:if="{{complete}}">完成</view> -->
+
+</view>

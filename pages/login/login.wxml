@@ -1,0 +1,67 @@
+<view class="loginForm">
+  <form bindsubmit="formSubmit">
+<!-- logo和文字 -->
+    <view class="box1" wx:if="{{isWXLogin}}">
+      <view class="logo">
+        <image src="../../images/login/login_logo.png" class="logo_img"></image>
+      </view>
+      <view class="logo_text">
+        安全便捷伴你行
+      </view>
+    </view>
+<!-- 授权登录盒子 -->
+    <view class="wx-login" wx:if="{{isWXLogin}}">
+      <view class="wx-login-button">
+        <button open-type="getPhoneNumber" 
+                class="login-button default"
+                bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+      </view>
+<!-- 手机号注册或者登录 -->
+      <view class="login-check" bindtap="changeLoginType">
+        <text style="color:#999">手机号注册/登陆</text>
+      </view>
+    </view>
+    <!-- 手机号注册 登录 -->
+    <view wx:else>
+       <view class="inputView">
+        <view class="phone">
+          <input maxlength="11" 
+                 name="authCode" 
+                 type="number" 
+                 bindinput="inputPhone" 
+                 value="{{phone}}"  
+                 placeholder="手机号码"/>
+          <!-- <text class="yzm" bindtap="getAuth" style="color:{{mainColor }} || #3fd572; ">{{authCodeBtn}}</text> -->
+          <text class="yzm" bindtap="getAuth" style="color: #3fd572; ">{{authCodeBtn}}</text>
+        </view>
+        <view class="phone">
+          <input class="phone-input" 
+                 maxlength="4" 
+                 type="number" 
+                 name="authCode" 
+                 bindinput='inputAuth'  
+                 placeholder="验证码"/>
+        </view>
+      </view>
+      <view class="submit">
+        <view class="btn-group">
+          <button formType="submit" 
+                  class="login-button" 
+                  disabled="{{disabled}}" 
+                  style="background-color:{{disabled ? '#d0d0d0' : mainColor}};color:{{disabled ? '#000' : textColor}}">手机号注册/登陆</button>
+          <!-- <view class="agreement">点击登录，即表示已经阅读并同意<text bindtap="toAgreement">《用户协议》</text></view> -->
+        </view>
+        <view class="login-check">
+          <!-- <view bindtap="denyLogin"><text>暂不登录</text></view> -->
+          <view bindtap="changeLoginType">微信授权登录</view>
+        </view>
+      </view>
+    </view>
+  </form>
+  <!-- 同意协议 -->
+   <view class="agreement">
+    <text>点击登录/注册即代表同意</text>
+    <!-- <text bindtap="toAgreement" style="color:{{mainColor}}">《用户协议》</text> -->
+    <text bindtap="toAgreement" style="color:#3fd572">《用户协议》</text>
+   </view>
+</view>

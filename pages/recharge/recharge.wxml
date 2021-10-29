@@ -1,0 +1,57 @@
+<view class='main'>
+  <!-- 充值金额盒子   >{{selfMoney ? '元' : '' }}</input>-->
+  <view class="balance_box">
+    <view class="balance_title">
+      充值金额
+    </view>
+    <view class="balance">
+      <block wx:for="{{items}}" wx:key="index">
+        <view class="balance_item" 
+              style="{{item.id == selected ? 'border: 4rpx solid '+mainColor : ''}}" 
+              data-id="{{item.id}}"
+              data-money="{{item.value}}"
+              bindtap="selectBalance">
+        <view wx:if="{{item.id == selected}}" class="yes_sign"></view>
+        <view wx:if="{{item.id == selected}}" class="done"><mp-icon icon="done" color="white" size="{{12}}"></mp-icon></view>
+          <input wx:if="{{selected == 50 && item.input}}"
+                 auto-focus="true"
+                 style="color:{{mainColor}};flex:1;font-size: 36rpx;"
+                 placeholder="请输入整数金额" placeholder-class='placeholder' disabled="{{item.radioCan}}" type="digit" maxlength="4" bindinput="otherBalance" 
+          ></input>
+          <view wx:else>  
+            <view 
+              class="balance-item-money {{item.input ? 'BIM-label' : 'BIM-label'}}" 
+              style="{{item.id == selected ? 'color: ' + mainColor : ''}}"
+            >{{item.name}}</view>
+            <view 
+              class="balance-item-tip {{item.input ? 'BIT-input' : ''}}"
+              style="color:{{item.id == selected ? ' #3fd672' : ''}};margin-top:10rpx"
+            >{{item.tip}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+ 
+ <!-- 支付盒子  -->
+  <view class="auth_box"> 
+  <view class="auth_text">
+      <!-- 点击去支付即表示您已阅读并同意 -->
+      <!-- <text style="color:{{mainColor}}">《充值条款及规则》</text> -->
+  </view>
+<view class="auto_button_box">
+  <button class="auth_button" disabled="{{disabled}}" bindtap="auth" style="background-color: {{mainColor}};color:{{textColor}}"> 去支付 {{money}} 元</button>
+</view>
+ </view>
+  
+  <!-- <view style="text-align: center;margin-top: 10rpx;color: #dd3263;font-size: 28rpx;">
+    充值金额不予退还
+  </view> -->
+  <!-- <view wx:if="{{payTip}}" class="recharge-tip">  -->
+  <!-- <text class="pay-tip">充值须知</text> -->
+  <!-- <view class='explain'> -->
+    <!-- <text  style="line-height:2" wx:for="{{payTip}}" wx:key="index">{{item}}</text> -->
+    <!-- <text style="line-height:1.7;word-break:break-all">{{payTip}}</text> -->
+  <!-- </view> -->
+  <!-- </view> -->
+</view>

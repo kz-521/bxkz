@@ -1,0 +1,67 @@
+<wxs module="m1">
+     var toFixedFn = function(num) {
+       if(num == 0) {
+        return Number(num).toFixed(0)
+       }else if((num % 1) == 0 ){  // 取余等于0 
+        return Number(num).toFixed(0)
+       }else{
+         return Number(num).toFixed(2)
+       }
+  }
+  module.exports = {
+    toFixedFn:toFixedFn,
+  };
+  </wxs>
+
+<view class="wallet">
+  <view class="wallet-header">
+    <view class="wallet_can">
+      <view class="wallet_can_text">
+        <text class="can_text"> 钱包可用余额 </text>
+      </view>
+      <view class="wallet_can_num">
+      <view>{{m1.toFixedFn(totalMoney)}}元</view>
+      <view><button class="wallet_button" catchtap="toRecharge">余额充值</button></view> 
+      </view>
+    </view>
+    <view class="wallet_remain">
+    <view class="reamin_left">
+      <view class="remain_text">本金余额</view>
+      <view class="remain_num">{{ m1.toFixedFn(actualMoney) }}元</view>
+    </view>
+    <view class="reamin_left">
+      <!-- <view class="remain_text">卡券余额</view> -->
+      <view class="remain_text">礼品卡余额</view>
+      <view class="remain_num">{{ m1.toFixedFn(cardMoney) }}元</view>
+    </view>
+    </view>
+  </view>
+  <!-- 明细 -->
+  <view class=" detail">
+    <view class="detail_item first" catchtap="walletDetail">
+     <view class="detail_text">账单明细</view>
+     <view>
+      <mp-icon icon="arrow" color="black" size="{{12}}"></mp-icon>
+     </view>
+    </view>
+    <view class="detail_item last" catchtap="inputCtrl">
+     <view class="detail_text">礼品卡兑换</view>
+     <view>
+      <mp-icon icon="arrow" color="black" size="{{12}}"></mp-icon>
+     </view>
+    </view>
+  </view>
+
+<!-- <view class="wallet-fixed" wx:if="{{showInput}}"> -->
+<view wx:if="{{showInput}}" style="position:fixed;bottom:0;left:0;height:260rpx;width:100%;background-color:#fff;z-index:11">
+  <view class="fixed">
+    <input placeholder="卡券余额兑换" 
+           number='16'
+           bindinput="inputCardNO" 
+           style="border-bottom: 1px solid #999"></input>
+  </view>
+  <view class="wallet_button1" bindtap="exchange" style="background-color: {{mainColor}};color: {{textColor}};">兑换</view> 
+</view>
+  <!-- </view> -->
+  <view class="page-mask" bindtap="inputCtrl" wx:if="{{showInput}}"></view>
+</view>

@@ -1,0 +1,47 @@
+<view>
+  <view>
+    <view class="advice-body">
+      <view style="font-weight:700;font-size: 36rpx">问题类型</view>
+      <view class="advice-type">
+        <view data-title="站点少" 
+              bindtap="selectAdvice" 
+              style="{{title=='站点少'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">站点少</view>
+        <view data-title="还不了车" 
+              bindtap="selectAdvice" 
+              style="{{title=='还不了车'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">还不了车</view>
+      </view>
+      <view class="advice-type">
+        <view data-title="找不到车" 
+              bindtap="selectAdvice" 
+              style="{{title=='找不到车'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">找不到车</view>
+        <view data-title="故障车多" 
+              bindtap="selectAdvice" 
+              style="{{title=='故障车多'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">故障车多</view>
+      </view>
+      <view class="advice-type">
+        <view data-title="缺电车多" 
+              bindtap="selectAdvice" 
+              style="{{title=='缺电车多'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">缺电车多</view>
+        <view data-title="收费不合理" 
+              bindtap="selectAdvice" 
+              style="{{title=='收费不合理'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">收费不合理</view>
+      </view>
+      <view class="advice-type">
+        <view data-title="小程序不好用" 
+              bindtap="selectAdvice" 
+              style="{{title=='小程序不好用'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">小程序不好用</view>
+        <view data-title="其他" 
+              bindtap="selectAdvice" 
+              style="{{title=='其他'? 'border-color:' + mainColor + ';color:' + mainColor : ''}}">其他</view>
+      </view>
+    </view>
+    <view class="advice-remark">
+      <view class="problem">问题反馈</view>
+      <textarea placeholder="请输入您的反馈意见。" 
+                class="inputContent" 
+                value="{{advice}}" 
+                bindinput="bindTextAreaBlur"/>
+    </view>
+    <button class="submit-button" bindtap="commitAdvice">提交</button>
+  </view>
+</view>

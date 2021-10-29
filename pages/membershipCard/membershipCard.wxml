@@ -1,0 +1,71 @@
+<!--pages/membershipCard/membershipCard.wxml-->
+<view class="main"> 
+<!-- 会员卡轮播图片 -->
+<!-- <view class="open_swiper"> -->
+  <view>
+<view class="swiper1">
+  <!-- <image class="huiyuan" mode="scaleToFill" src="../../images/huiyuan2.png"></image> -->
+  <view class="left">
+    <view class="small_title">
+    开通会员卡
+    </view>
+    <view class="big_title">
+      骑行更划算!
+    </view>
+  </view>
+  <view class="right">
+  <image  src="../../images/huiyuanka/huiyuanka.png" class="card_image"></image>
+  </view>
+</view>
+  <!-- <swiper 
+        current='1'
+        circular='true'
+        interval="{{interval}}" 
+        duration="{{duration}}"
+        previous-margin="100px"
+        next-margin="100px"
+        >
+        <block wx:for="{{background}}" wx:key="*this">
+          <swiper-item>
+            <view class="swiper-item {{item}}">
+              <image src="../../images/huiyuan.png" style="width:80%;"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper> -->
+
+</view>
+<view>
+ <!-- 会员卡内容 -->
+ <!-- <view class="card_content"> -->
+ <!-- 会员卡 内容 标题 -->
+ <!-- <view class="content_title"> -->
+  <!-- 会员卡特权 -->
+ <!-- </view> -->
+ <!-- 会员卡 内容 文字内容 -->
+ <!-- <view class="content_text"> -->
+
+ <!-- </view> -->
+ <!-- </view> -->
+
+<!-- 购买须知 -->
+<view class="pay_need_konw">
+  <text class="pay-tip" style="font-size:28rpx">购买须知</text>
+  <view class='explain'>
+    <text style="line-height:1.7;word-break:break-all">{{payTip}}</text>
+  </view>
+</view>
+    <!-- <view class="pay-btn" style="bottom: 0 ">
+    <text style="background: #3fd572;color:#fff " bindtap="auth" class="button">开通</text>
+  </view> -->
+
+
+
+ <!-- 开通会员卡按钮 -->
+ <view class="pay_box">
+  <button class="pay_button" catchtap="pay">
+    开通会员卡
+  </button>
+ </view>
+</view>
+</view>

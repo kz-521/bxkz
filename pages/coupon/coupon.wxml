@@ -1,0 +1,56 @@
+<view class="coupon">
+<!-- 可使用不可使用 -->
+<view wx:if="{{couponList.length > 0}}">
+<!-- 可使用 标题 -->
+  <view class="can" wx:if="{{canUseList.length > 0}}">可使用</view>
+<!-- 可使用 卡片 -->
+  <block wx:for="{{canUseList}}" wx:key="index">
+    <view class="card">
+      <view class="right_top_title">可使用 </view>
+        <view class="left">
+          <view class="mach">
+            <text style="font-size:32rpx">￥</text>
+            <text style="font-size:72rpx;margin-left:-10rpx">{{item.couponMoney / 100}}</text>
+          </view>
+          <view class="card_name"> 骑行满减券</view>
+        </view>
+        <view class="right">
+          <view class="card_type">
+            <view class="type">{{item.name}}</view>
+          <view style="background-color:red">  
+        <!-- <button class="can_use"> -->
+        <!-- 可使用 -->
+        <!-- </button> -->
+        </view>
+      </view>
+      <view class="time">有效期:  {{item.endTime}}</view>
+      </view>
+    </view>
+  </block>
+
+<!-- 不可使用 卡片-->
+  <view wx:if="{{notUseList.length > 0}}" class="can" style="font-weight:700">不可用</view>
+  <block wx:for="{{notUseList}}" wx:key="index">
+    <view class="card" style="border-left: 22rpx solid #e0e1e2;">
+      <view class="right_top_title" style="color:#a3a3a3;background-color:#e0e1e2">{{ item.isUse == 1 ? '已使用': '已失效' }}</view>
+      <view class="left">
+        <view class="mach">
+          <text style="font-size:32rpx;color:#e0e1e2">￥</text>
+          <text style="color:#E0E1E2;font-size:72rpx;margin-left:-10rpx">{{item.couponMoney / 100}}</text>
+        </view>
+        <view class="card_name" style="color:#999">骑行满减卷</view>
+      </view>
+    <view class="right">
+      <view class="card_type">
+        <view class="type">{{item.name}}</view>
+      <view></view>
+      </view>
+      <view class="time">有效期:  {{item.endTime}}</view>
+    </view>
+    </view>
+  </block>
+</view>
+
+<!-- 没有 优惠卷 -->
+<view wx:if="{{couponList.length == 0}}" class="none">暂无优惠券</view>
+</view>

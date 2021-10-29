@@ -1,0 +1,571 @@
+<wxs module="utilTool" src="../../utils/tool.wxs"></wxs>
+<view style="width:100%;overflow-x:hidden">
+<!--map.wxml-->
+<view style="display: flex;flex-direction: column;height: 100%">
+  <!-- 头部 -->
+  <view class="top-title" style="padding-top:{{topHeight}}px;background:{{headColor}};color:{{textColor}};height:55px">
+    <view class="my-info" style="background:{{headColor}};">
+    <!-- 未登录 头像-->
+      <image class="avatar" src="../../images/map/my.png" wx:if="{{!isLoaded}}" bindtap="toMyInfo" data-item="1" style="top:{{topHeightone}}px"></image>
+    <!--已登录 头像-->
+      <view class="avatar" wx:else bindtap="toMyInfo" data-item="1">
+        <open-data class="myavatar" type="userAvatarUrl"  style="border-radius:50%;top:{{topHeightone}}px"></open-data>
+        <!-- 头像右下方小红点 -->
+        <view wx:if="{{hasMessage}}" class='avater_badge position1'/>
+      </view>
+    <!-- 标题  百姓快租-->
+    <view class="title-cnter" style="position:absolute;top:0;background:{{headColor}};color:{{textColor}};font-size:36rpx;">{{title}}</view> 
+  </view> 
+  <!-- 布局 占位 -->
+    <view class="map-header" style="background:transform;color:{{textColor}}"></view>
+  </view>
+
+  <!-- 预约 -->
+  <view wx:if="{{showAppoint && !isClickParkPoint && !isSearch}}" class="appoint-area" style="top:{{topHeight + 50}}px;z-index:3002;" >
+    <view class="appoint-area-top">车辆编号: {{thisBicycle.userCode}}</view>
+    <view class="appoint-area-middle">
+      <view class="appoint-area-middle-left">
+        <text class="appoint-number" style="color:{{mainColor}}">{{thisBicycle.socPercent}}</text>%电量
+      </view>
+      <view class="appoint-area-middle-right">
+        <text class="appoint-number" style="color:{{mainColor}}">{{thisBicycle.surplusMileage}}</text>km续航
+      </view>
+    </view>
+    <view class="appoint-area-bottom"> 
+      <view wx:if="{{!isAppointing}}" class="appoint-btn" bindtap="appoint">预约用车</view>
+      <view wx:else>
+        <view class="appoint-area-bottom-left">预约有效时间 {{appointFormatTime}}</view>
+        <view class="appoint-area-bottom-right">
+          <view wx:if="{{!appointFormatTime}}" class="appoint-area-bottom-right-btn1" style="background-color:grey">寻车</view>
+          <view wx:if="{{appointFormatTime}}" class="appoint-area-bottom-right-btn1"  bindtap="searchAppointBicycle">寻车</view>
+          <view class="appoint-area-bottom-right-btn2" bindtap="cancelAppoint">取消预约</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+ <!-- 轮播图 公告   -->
+      <view class="swiper" wx:if="{{ isCloseSwiper && !isSearch}}" style="top:{{topHeight+50 + 10 }}px;"> 
+        <!-- 轮播图 公告 -->
+        <image wx:if="{{!isSearch}}" src="../../images/map/laba.png" style="width:32rpx;height:34rpx;vertical-align:middle;margin:30rpx 4rpx 0 26rpx;"/>
+        <swiper wx:if="{{!isSearch}}" 
+                class="swiper-box" 
+                autoplay="{{autoplay}}" 
+                interval="{{interval}}" 
+                duration="{{duration}}" 
+                vertical="{{vertical}}" 
+                circular='{{circular}}'>
+        <block wx:for="{{background}}" wx:key="index">
+          <swiper-item class="swiper-item">
+            <view class="swiper-item {{item}}">
+              <text class="swiper-text" style="color:#999;margin-bottom:1rpx;">{{item.text}}</text>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <image wx:if="{{!isSearch}}" src="" style="width:30rpx;height:30rpx;margin-top:30rpx;"/>
+      </view> 
+      <!-- 点击导航至还车点 -->
+      <view class="swiperApp" wx:if="{{ swiperMapApp && suggest.length === 0 }}" style="top:{{topHeight+50 + 10 }}px; z-index:2002;" catchtap="nav">
+        <view>点击导航至还车点</view>
+      <image src="../../images/map/close.png" style="width:30rpx;height:30rpx;margin-top:30rpx;position:absolute;top:-3rpx;right:32rpx" catchtap="closeNav"/>
+      </view>
+
+      <!-- 搜索目的地输入框 -->
+      <view class="go_where" style="top:{{topHeight+50}}px;" wx:if="{{hadInput && suggest.length > 0 }}"></view>
+      <view class="swiper" wx:if="{{isSearch}}" style="top:{{topHeight+50 + 10 }}px;z-index:2000" show="{{!swiperMapApp}}">
+      <view wx:if="{{isSearch}}" class="search-input" style="display:flex;justify-content:space-between;">
+          <view style="height:100%;display:inline-block;" catchtap="inputBack">
+            <image src="../../images/zhankai.png" style=" width:32rpx;height:18rpx;margin-top:36rpx; margin-right:20rpx ;transform:rotate(-90deg);" catchtap="inputBack"></image>
+          </view>
+          <input class="input" style="width:{{hadInput ? '488rpx' : '600rpx' }}" focus bindfocus="bindKeyBlur" bindblur="bindKeyBlur" bindinput="inputSearch" search placeholder="输入目的地" value="{{keyword}}"></input>
+         <view style="height:100%;display:inline-block;width:60rpx;text-align: center;" catchtap="clearText">
+          <image wx:if="{{hadInput}}" src="../../images/qingkong.png" style="width:30rpx;height:30rpx;margin-top:31rpx" catchtap="clearText1"></image>
+         </view>
+          <view wx:if="{{hadInput}}" style="color:{{mainColor}}; height:100%;display:inline-block;" catchtap="getSearch">搜索
+          <!-- <text wx:if="{{hadInput}}">搜索</text> -->
+          </view>
+        </view>
+      </view>
+      <!-- 列表数据 -->
+      <view class="swiper1" wx:if="{{hadInput && suggest.length > 0}}" style="top:{{topHeight+ 50 + 60 }}px;z-index:{{hadInput ? '9999' : '0'}};height:calc( 100% - {{topHeight + 110}}px )">
+        <!-- 地点搜索有数据 列表数据 -->
+        <block wx:for="{{suggest}}" wx:key="index">
+          <view class="suggest-item" data-aim="{{item}}" bindtap="toTargetMap">
+          <view class="image_box">
+          <image src="../../images/search/where.png" style="height: 32rpx;width: 26rpx;margin:50rpx 50rpx;transform:translate(-50%,-50%)"></image>
+         </view> 
+         <view class="text_box">
+          <view class="text_box_top">{{item.title}}</view>
+          <view class="text_box_bottom" style="font-size: 26rpx;color: #999">
+          <view style="width:240rpx;height:28rpx;font-size:20rpx;color:#999; overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+            {{item.addr}}
+          </view>
+          <view style="width:60%;display:flex;justify-content:flex-end">
+            {{item.space}}km
+          </view>
+          </view>
+        </view>
+      </view>
+        </block>
+      </view>
+
+ <!-- 地图 map  个性化秘钥 需要高版本基础库支撑 subkey="VYUBZ-LNCCU-LJCVJ-2C6MK-U4CH5-N4BH7"  showView 触发地图刷新不能随意触发-->
+ <view style="position:relative">
+  <map id='myMap'  
+       class="map"
+       style="height:{{showView ?  '988rpx' : '868rpx' }};position:relative"
+       show-location="{{isShowLocation}}"
+       scale="{{showView ? 16 : 13 }}"
+       subkey="{{subkey}}"
+       longitude='{{longitude}}'
+       latitude='{{latitude}}'
+       controls="{{controls}}"
+       markers="{{markers}}" 
+       polygons="{{polygon}}"
+       circles="{{circles}}"
+       polyline="{{polyline}}"
+       bindcontroltap="controlsEvent"
+       bindmarkertap="markertap" 
+       bindregionchange="regionchange" 
+       bindtap="tabMap"
+       bindrendererror="renderError">
+      <!-- 持续触发同层渲染 -->
+      <view style="position:absolute;z-index:9999;top:50px;left:50px;width:0;height:0;display:{{refreshViewVisible? 'block' : 'none'}}"></view>  
+<!-- 活动礼包 -->
+<!-- <cover-view   
+    class="gift" 
+    catchtap="toEvnet" 
+    style="top:200rpx" wx:if="{{!showView && !showStartAd && !guideDialog && !waitPay }}"> -->
+  <!-- <view class="imagebox"> -->
+    <!-- <cover-image style="width:100%;height:50%; " class="image1" src="../../images/map/gift.png"></cover-image>
+    <cover-image style="width:120%;height:60%;" class="image2" src="../../images/map/giftbottom.png"></cover-image> -->
+  <!-- </view> -->
+  <!-- </cover-view>  -->
+  </map>
+  <view wx:if="{{!showView}}" class="{{showView ? 'map-center-marker' : 'map-center-markers'}}" style="position:absolute">
+    <image src="/images/map/pin.png" style="width:48rpx;height:78rpx;"></image>
+  </view>
+  <view wx:if="{{showView}}" class="{{showView ? 'map-center-marker' : 'map-center-markers'}}">
+    <image src="/images/map/pin.png" style="width:48rpx;height:78rpx;"></image>
+  </view>
+</view>
+<!-- 找车 还车点 catchtap="showParkeOrVerticalLine" && !isAppointing-->
+<view class="look_for" wx:if="{{haveLookFor}}"  data-switch="true" style="bottom:{{ showView ? '446rpx': '566rpx'}} ">
+  <view class="{{!isClickParkPoint ? 'look_for_left' : 'look_for_right'}}" catchtap="getCar">找车</view>
+  <view class="{{!isClickParkPoint ? 'look_for_right' : 'look_for_left'}}" catchtap="getPark">还车点</view>
+</view>
+<!-- 覆盖层 同屏 一层 扫码骑车 -->
+<view class="fugai" wx:if="{{!showView}}" style="height:580rpx">
+  <view class="saoma">
+    <view class="qiche" catchtap="riding">  
+    <view style="position:relative;width:60rpx;height:80rpx">
+      <image src="../../images/map/mapsaoma.png" style="width:22px;height:22px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></image>
+    </view>
+    <view class="qiche_text" >扫码骑车</view>
+    </view>
+    <view class="qiche-item">
+    <block wx:for="{{rideItem}}" wx:key="index">
+      <view class="qiche-item-one" bindtap="{{item.event}}">
+        <view>
+          <image src="{{item.src}}" class="qiche-item-img"></image>
+        </view>
+        <view>{{item.text}}</view>
+      </view>
+    </block>
+    </view>
+  </view>
+  <!-- 活动大图片 -->
+  <view class="huodong">
+      <image wx:if="{{topImage[0].src}}" style="width:100%;"  mode='widthFix' src=" {{topImage[0].src}}" data-url="{{topImage[0].target}}" catchtap="toTarget"></image>
+      <image wx:else style="width:100%;" mode='widthFix' src="http://bxkz.oss-cn-hangzhou.aliyuncs.com/tixing.png"></image>
+  </view>
+</view>
+ <!-- 骑行  搜索按钮 提示区域还车或者不还车 搜索目的地附件还车点 -->
+  <cover-view wx:if="{{hadGetGeoData && !isSearch && noToApp && showView}}" 
+        bindtap="toSearch" 
+        hidden="{{ruleShow || studyLead || isNotAreaPhoto1 || isNotAreaPhoto || guideDialog || showStartAd || flag || guideDialog || parkMachineTip || verticalTip || lendHelmetShowTip || returnHelmetShowTip || showStartAd || showMyInfo}}"
+        class="map-center-search" 
+        style="top:calc( 374rpx + {{topHeight + 50}}px ); z-index: 901;">
+    <cover-image src="{{isInGeo ? '../../images/searchnew.png'  : '../../images/searchnew1.png' }}" style="width:308rpx;height:76rpx"></cover-image>
+  </cover-view>  
+   <!-- 未骑行  搜索按钮 提示区域还车或者不还车 搜索目的地附件还车点 -->
+  <cover-view wx:if="{{hadGetGeoData && !isSearch && noToApp && !showView}}" 
+        bindtap="toSearch" 
+        hidden="{{ruleShow || studyLead || isNotAreaPhoto1 || isNotAreaPhoto || guideDialog || showStartAd || flag || guideDialog || parkMachineTip || verticalTip || lendHelmetShowTip || returnHelmetShowTip || showStartAd || showMyInfo}}"
+        class="map-center-search" 
+        style="top: calc( 319rpx + {{topHeight + 50}}px ); z-index: 901; ">
+    <cover-image src="{{isInGeo ? '../../images/searchnew.png'  : '../../images/searchnew1.png' }}" style="width:308rpx;height:76rpx"></cover-image>
+  </cover-view>
+  <view wx:if="{{!showView && (flag || guideDialog || parkMachineTip || verticalTip || lendHelmetShowTip || returnHelmetShowTip || showStartAd || showMyInfo) }}" 
+        bindtap="toSearch" 
+        class="map-center-search" 
+        style="top:calc( 325rpx + {{topHeight + 50}}px ); z-index: 901;">
+    <image src="{{isInGeo ? '../../images/searchnew.png'  : '../../images/searchnew1.png' }}" style="width:308rpx;height:76rpx"></image>
+  </view>
+  <view wx:if="{{showView && (flag || guideDialog || parkMachineTip || verticalTip || lendHelmetShowTip || returnHelmetShowTip || showStartAd || showMyInfo) }}" 
+        bindtap="toSearch" 
+        class="map-center-search" 
+        style="top:calc( 380rpx + {{topHeight + 50}}px ); z-index: 901;">
+    <image src="{{isInGeo ? '../../images/searchnew.png'  : '../../images/searchnew1.png' }}" style="width:308rpx;height:76rpx"></image>
+  </view>
+
+<!--  左侧 刷新-->
+  <view 
+    class="parkBtn"
+    target="miniProgram"
+    path=""
+    catchtap="refresh" 
+    style="bottom:{{showView ? '586rpx': '700rpx'}};left:20rpx;z-index:{{ lucency ? '9999' : '930' }}">
+    <image class="riding_item" src="../../images/map/refresh3.png" style="height:36rpx;width:36rpx;"></image>
+    <view style="width: 48rpx;height: 30rpx;font-size: 20rpx;color:#666">刷 新</view>
+</view>
+<!--  左侧 定位  不支持头盔锁 开屏广告 引导 等 同屏-->
+<view 
+    class="parkBtn" 
+    catchtap="moveTo" 
+    style="bottom:{{showView ? '484rpx': '602rpx'}};left:20rpx">
+    <image class="riding_item" src="../../images/map/dw2.png" style="height:36rpx;width:36rpx;"></image>
+    <view style="width: 48rpx;height: 30rpx;font-size: 20rpx;color:#666">定 位</view>
+</view>
+<!-- 重写后 头盔锁按钮  展示头盔锁 展示提示 广告 还车展示提示 借车提示 && !showHelmetTip && !guideDialog && !returnHelmetShowTip && !verticalTip && !lendHelmetShowTip-->
+  <view 
+    wx:if="{{showHelMet}}"
+    class="parkBtn" 
+    catchtap="openHelMetLock"
+    style="bottom:586rpx;">  
+      <image class="riding_item" src="../../images/map/openHelMet.png"></image>
+    <view style="width: 48rpx;height: 30rpx;font-size: 20rpx;color:#666">开 锁</view>
+  </view> 
+  <!--骑行中 右侧客服  wx:if="{{showView && !showStartAd  && !guideDialog  && !waitPay  && !showHelmetTip}}" -->
+  <view
+    class="parkBtn" 
+    catchtap="toHelp" 
+    style="bottom:{{showView ? '484rpx': '-999rpx'}};">
+    <image class="riding_item" src="../../images/map/kefu@3x1.png" style="height:36rpx;width:36rpx;"></image>
+    <view style="width: 48rpx;height: 30rpx;font-size: 20rpx;color:#666">客 服</view>
+</view>
+
+  <!-- 借车 状态 notArea && showView-->
+  <!-- 超区遮罩层 点击穿透 可以触发下层事件 -->
+  <view class="rule" wx:if="{{ notArea && showView }}" style="pointer-events:none;z-index:902;background-color: rgba(0, 0, 0, .3);"></view>
+    <view class="borrow1" wx:if="{{showView}}">
+      <view wx:if="{{ notArea }}" class="borrow_tip">
+      <text catchtap="outArea1" style="color:#fff;font-size:32rpx">超出运营区车辆断电 返回即可通电</text>
+      <image catchtap="outArea1" src="../../images/map/notAreaHelp.png" style="width:18rpx;height:18rpx;vertical-align:text-top;"></image>
+      </view>
+      <view wx:if="{{isRide && !notArea}}" class="borrow_tip"><text style="color:#fff;font-size:26rpx">锁车中 90分钟后订单会自动结束 {{lastStopDeltaTime}} </text></view>
+      <view wx:if="{{isPark && !notArea}}" class="borrow_tip" style="background-color: #fff">如遇车辆故障，请在<text style="color:red;">2分钟</text>内免费还车 </view>
+    <!-- 借车 下方 大盒子 -->
+    <view class="borrow_content"> 
+    <!--借车 骑行时间 临时锁车 继续骑行 左侧盒子 -->
+      <view class="borrow_content_left">
+        <view class="left_top"> 骑行时间 </view>
+        <view class="left_center"  style="background:url(https://i0.hdslb.com/bfs/album/1d0b348f13ee8e93ac451b0a9739a8ea3d9f6790.png);width:210rpx;">
+          <view class="prpgress" style="width:{{prpgress}}rpx;"></view>
+          <!-- <view class="prpgress" style="width:208rpx;"></view> -->
+         <view style="color:#fff;display:flex;justify-content:center;align-content:flex-end" class="progress_text">
+          <view>{{utilTool.getTime(time)}}</view><text class="riding_min">分钟</text>
+         </view>
+         </view>
+         <!-- 左 电量 可骑行 -->
+        <view class="left_center_next">
+          <image 
+          src="../../images/machineStatus/dianliang{{surplusMileage11>=60 ? '5' : (surplusMileage11 >=48 ? '4' : (surplusMileage11 >=36 ? '3' : (surplusMileage11 >=24 ? '2' : (surplusMileage11 >=12 ? '1' : '0'))))}}.png" 
+          class="percent_img"></image> 
+          <view style="margin-right:10rpx;font-size: 26rpx;">还可骑行<text style="font-weight:700;">{{surplusMileage11}}</text>公里</view>
+        </view>
+        <view class="bottom-riding" wx:if="{{isRide}}">
+        <view class="left_button_continueRide" bindtap='continueRide'>解锁骑行</view>
+        </view>
+        <view class="bottom-riding" wx:if="{{isPark}}">
+          <view class="right_button_parkRide" bindtap='parkRide'>临时锁车</view>
+        </view>
+      </view>
+<!---借车 还车 骑行费用 右侧还车盒子 -->
+    <view class="borrow_content_left">
+        <view class="left_top" catchtap="showRule"> 骑行费用
+        <image style="width:11.5px;height:11.5px;" src="../../images/map/query.png" catchtap="showRule"></image>
+         </view>
+        <view class="right_center"> {{money}}<text style="font-size:26rpx;display:inline-block;margin-left:8rpx">元</text>
+        </view>
+        <!-- 右 车辆编号 -->
+        <view class="left_center_next"><view>车辆编号 {{9 >= machineNO.length?machineNO:longMachineNO}}</view></view>
+        <view class="bottom-riding" wx:if="{{isRide}}">
+            <view class="right_button_returnBike" bindtap="returnBike">还车</view>
+        </view>
+        <view class="bottom-riding" wx:if="{{isPark}}">
+            <view class="left_button_returnBike"bindtap="returnBike">还车</view>
+        </view>
+      </view>
+      <view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹出蓝牙引导 -->
+  <view 
+    class="zhezao"
+    wx:if="{{flag}}"
+    style="z-index:{{flag ? '9999' : '0'}}">
+    <view class="t_w">
+      <!--弹出框开始-->
+      <view class="tanchu_view">
+        <view>
+          <view class="guide-body" style='background-color:{{mainColor}}'>
+            <view class="body-text" style="color:white">
+              请打开蓝牙后点击重试!
+            </view>
+            <image src="{{guideImage}}" style="display:block"></image>
+          </view>
+          <!--确定开始-->
+          <view class="guide-bottom">
+            <view class="retry" bindtap="retry" style="background-color:{{mainColor}};color:{{textColor}}">重试</view>
+            <view class="cancel" bindtap="cancel" style="background-color:#C7C7C7;color:#404040">取消</view>
+          </view>
+          <!--确定结束-->
+        </view>
+      </view>
+      <!--弹出框结束-->
+    </view>
+  </view>
+  
+  <!--第二个广告 悬浮 广告 -->
+  <view class="zhezhao"
+        wx:if="{{guideDialog}}"
+        bindtap="knownTap"
+        style="z-index:9999;">
+    <view class="t_w">
+      <view class="tanchu_view">
+        <view>
+          <swiper style="height:900rpx;"
+                  indicator-dots="true"
+                  circular="true"
+                  autoplay="true"
+                  interval="5000"
+                  duration="500"
+                  indicator-active-color="#ffffff">
+            <block wx:for="{{boundImage}}" wx:key="index">
+              <swiper-item>
+                <view class="image-border">
+                  <image catchtap="toTarget" data-url="{{item.target}}" src="{{item.src}}" class="slide-image"
+                    mode="aspectFit" id="img_{{index}}" />
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <view class="guide-bottom2">
+            <image bindtap="knownTap" src="/images/zhezhao/cross.png" style="height: 30px;width: 30px"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 停车感应 rfid  -->
+  <view class="zhezao"
+        wx:if="{{parkMachineTip}}"
+        bindtap="closeParkMachineTip">
+    <view class="vertical_t_w">
+      <view class="tanchu_view">
+        <view>
+            <image src="../../images/parkMachine.gif" style="display:block" mode="aspectFit"></image>
+        </view>
+        <view class="closeTip">
+            <image bindtap="closeParkMachineTip" src="/images/zhezhao/cross.png" style="height: 30px;width: 30px"></image>
+          </view>
+      </view>
+    </view>
+  </view>
+
+<!-- 垂直停车引导 verticalTip-->
+  <view class="lend_bottom"
+        wx:if="{{verticalTip && showView}}"
+        style=" z-index:{{ verticalTip ? '9999' : '0' }}">
+    <view class="helmet_text">请将车头朝向马路</view>
+    <view class="helet_img_box" style="height:444rpx;border-radius:16rpx;">
+      <image style="width: 508rpx;height:444rpx;border-radius:16rpx;" src="http://bxkz.oss-cn-hangzhou.aliyuncs.com/chuizhitingche2.gif"></image>     
+    </view>
+    <view>
+      <button class="lead_button" catchtap="closeVerticalTip">
+       <text class="lead_text"> 我知道了</text> 
+      </button>
+    </view>
+  </view>
+
+  <!-- 头盔锁 -->
+  <view class="lend_bottom" 
+        wx:if="{{lendHelmetShowTip | returnHelmetShowTip}}"
+        style="z-index:{{(lendHelmetShowTip | returnHelmetShowTip) ? '9999': '0'}}">
+    <view wx:if="{{lendHelmetShowTip && !isButtonLendHelmetShowTip}}" class="helmet_text">点击开锁按钮解锁头盔</view>
+    <view wx:if="{{lendHelmetShowTip &&  isButtonLendHelmetShowTip}}" class="helmet_text">请拔出插销取头盔</view>
+    <view wx:if="{{returnHelmetShowTip}}" class="helmet_text">请将头盔朝上放回车筐</view>
+    <view wx:if="{{returnHelmetShowTip}}" class="helmet_text" style="margin-top:0rpx">用力将插销插入固定</view>
+    <view wx:if="{{lendHelmetShowTip}}" class="helmet_text_small">佩戴头盔 安全出行</view>
+    <view class="helet_img_box">
+    <image wx:if="{{lendHelmetShowTip && isButtonLendHelmetShowTip}}" style="width:508rpx;height:370rpx;border-radius:16rpx;" src="http://bxkz.oss-cn-hangzhou.aliyuncs.com/buttonjietoukui1.gif"></image>    
+    <image wx:if="{{lendHelmetShowTip && !isButtonLendHelmetShowTip}}" style="width:508rpx;height:370rpx;border-radius:16rpx;" src="http://bxkz.oss-cn-hangzhou.aliyuncs.com/jietoukuilast.gif"></image> 
+    <image wx:if="{{returnHelmetShowTip}}" style="width: 508rpx;height: 370rpx;border-radius:16rpx;" src="http://bxkz.oss-cn-hangzhou.aliyuncs.com/huantoukui1.gif"></image>     
+    </view>
+    <view>
+      <button class="lead_button" catchtap="closeLendOrReturnHelMetTip">
+       <text class="lead_text"> 我知道了</text> 
+      </button>
+      <!-- <view wx:if="{{returnHelmetShowTip}}" class="bad-Helmet" catchtap="forfeit">
+        头盔遗失或头盔锁损坏<mp-icon class="pink_right" icon="arrow" color="#3fd572" size="{{12}}"></mp-icon> 
+      </view> -->
+    </view>
+  </view>
+
+<!-- 支付罚金 -->
+  <view class="lend_bottom forfeit" wx:if="{{forfeit}}" style="z-index: 9999; height: 460rpx;">
+  <!-- 头部 -->
+  <view class="forfeit-top">
+    <view class="forfeit-back" catchtap="exitForfeit">
+      <mp-icon class="pink_right" icon="arrow" color="black" size="{{12}}" style="transform: rotate(180deg);margin-top: 8rpx;"></mp-icon> 
+    </view>
+    <!-- 支付罚金 -->
+    <view wx:if="{{!isHemetFalse}}" class="helmet_text" style="font-size: 32rpx; margin-top: 0;width: 90%;">
+        是否支付{{forfeitNum}}元罚金？
+    </view>
+    <!-- 拍摄文字头 -->
+    <view wx:else class="helmet_text" style="font-size: 32rpx; margin-top: 0;width: 90%;background-color: red;">
+        请拍摄故障头盔
+    </view>
+   <view>
+   </view>
+  </view>
+  <view wx:if="{{isHemetFalse}}" style="height: 266rpx;box-sizing: border-box;padding: 20rpx;display: flex;flex-direction: row;background-color: pink;">
+    <!-- 拍摄坏照 -->
+    <view wx:for="{{imgUrls}}" wx:key="index" style="display:inline-block;position:relative;height: 120rpx;">
+      <image mode="aspectFill" 
+             src='{{item}}' 
+             class="photo" 
+             style="box-sizing: border-box; border:2rpx solid #fff"></image>
+      <!-- 叉号 删除当前照片 -->
+      <image catchtap="deleteImage"
+              class="delete"
+              src="../../images/map/close copy.png"
+              style="width:40rpx; height:40rpx"
+              wx:if="{{imageIds}}" 
+              data-index="{{index}}">
+      </image>
+    </view>
+    <!-- 添加照片  -->
+    <view class="photo" wx:if="{{imgUrls.length < 3}}" catchtap="chooseImage">十</view>
+  </view>
+  <!-- 按钮 -->
+   <view wx:if="{{!isHemetFalse}}" style="height:200rpx;display: flex;justify-content: space-between;">
+      <button class="left_button" catchtap="forfeitSure">是</button>
+      <button class="right_button" catchtap="forfeitFalse">否</button>
+   </view>
+   <!-- 提交头盔损坏图片 -->
+   <view wx:if="{{isHemetFalse}}" style="height:120rpx;line-height: 120rpx;">
+    <button class="submit" 
+            style="background-color: {{(imgUrls.length > 0) ? '#3fd572' : '#999'}};" 
+            catchtap="submit">提交</button>
+   </view>
+  </view>
+  
+ <!-- 启动页广告 -->
+  <view 
+  wx:if="{{showStartAd}}"
+  class="start-ad-wrapper"
+  style="z-index:{{showStartAd ? '9999': '0'}}">
+  <!-- 跳过按钮 -->
+    <view 
+    wx:if="{{showSkip}}" 
+    bindtap="skipStartAd" 
+    class="start-ad-skip" 
+    style="top:{{topAreaHeights+20}}px"
+    >跳过{{startPageAdTime}}</view>
+    <!-- 轮播图 盒子 -->
+      <view 
+      class="startAd">
+        <swiper 
+        class="swiperd" 
+        indicator-dots="true" 
+        circular="true" 
+        autoplay="true" 
+        interval="2000" 
+        duration="500" 
+        indicator-active-color="#ffffff">
+          <block wx:for="{{indexImage}}" wx:key="index">
+            <swiper-item>
+              <view class="swiper-image">
+                <image 
+                  style="width:100%;height:100%"
+                  catchtap="toTarget"
+                  data-url="{{item.target}}"
+                  src="{{item.src}}"
+                  id="img_{{index}}"
+                  hidden="{{!hadLoadStartAdImage}}"
+                  bindload="loadStartAdImage">
+                </image>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+  </view>
+
+<!-- 计费规则 组件 -->
+<billing ruleShow="{{ruleShow}}"
+         studyLead="{{studyLead}}"
+         isNotAreaPhoto="{{isNotAreaPhoto}}" style="z-index: 9999;"></billing>
+
+<!-- 遮罩层 计费信息  查看运营区 studyLead ruleShow isNotAreaPhoto1 isNotAreaPhoto-->
+<view wx:if="{{ isNotAreaPhoto1}}" class="rule">
+<!-- 查看运营区 -->
+  <view wx:if="{{isNotAreaPhoto1  && showView}}" class="find_area" style=" height: 880rpx;border-radius: 28rpx;">
+    <view class="lead_title">查看运营区</view>
+    <view class="lead_box" style="border-radius:16rpx;overflow:hidden">
+      <image style="width:100%;height:100%" src="../../images/map/aaa19.png"></image>
+    </view>
+    <view wx:if="{{isNotAreaPhoto1  && showView}}" style="margin-top:60rpx" class="not_arra_photo">
+      <button class="lead_button" catchtap="tooNextLead2"><text class="lead_text" style="font-size:32rpx">我知道了</text></button>
+    </view>
+  </view>
+</view>
+</view>
+
+<!-- 透明 遮罩层 -->
+<view class="lucency" wx:if="{{ lucency }}"></view>
+</view>
+
+<!-- <view wx:if="{{showMyInfo}}" style="width: 100%;height: 100%; position: fixed;top: 0; z-index: 3000; left: 0; background-color: transparent;backdrop-filter: blur(5px);" bindtap="closeMyInfo">
+ <view wx:if="{{showMyInfo}}" catchtap="nothing" style="width: 60%; height: 100%;background-color: #fff;">
+  <view style="height:{{topHeight+55}}px;"></view>
+   <view style="height: 230rpx;  "> 
+   <view style="display: flex;flex-direction: row;align-items: center;">
+    <view style="width:108rpx;height:108rpx;border-radius:50rpx;overflow: hidden;margin:0 20rpx;">
+      <open-data class="active-avatar" type="userAvatarUrl"></open-data>
+    </view>
+    <view>
+      <view class="phone_num">{{phone}}</view>
+    </view>
+   </view>
+   </view> 
+   <view style="height: 864rpx;">
+      <view style="height: 108rpx;box-sizing: border-box; padding: 0 0 0 24rpx; display: flex; flex-direction: row; align-items: center;"
+            wx:for="{{items}}" 
+            wx:key='index'
+            catchtap="toWhith"
+            data-title="{{item.index}}" 
+            data-type="0">
+              <image style="width:36rpx;height:36rpx;" src="{{item.url}}"></image>
+              <mp-badge wx:if="{{item.hasMessage}}" content="" style="position: absolute;top: -22rpx;right: 25rpx;z-index:99; width: 20rpx; height:20rpx;"/>
+              <view class="item-center" style="margin-left: 12rpx;font-weight: 500;">{{item.title}}</view>
+      </view>
+   </view>
+ </view> -->
+<!-- </view> -->
+
+  <!-- 弹出层 退出登陆 -->
+  <!-- <mp-dialog title="温馨提示" 
+            style="z-index: 9999;"
+             show="{{dialogShow}}" 
+             bindbuttontap="tapDialogButton"
+             buttons="{{buttons}}">
+    您确定要退出当前账号吗?
+  </mp-dialog> -->

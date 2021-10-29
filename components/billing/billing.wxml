@@ -1,0 +1,56 @@
+<!--components/billing/billing.wxml-->
+<view wx:if="{{ruleShow || studyLead || isNotAreaPhoto1 || isNotAreaPhoto}}" class="rule">
+<!-- 车辆计费规则 -->
+  <view wx:if="{{ruleShow}}" class="rule_info">
+    <view class="rule_title" style="height:128rpx;line-height:128rpx">
+      车辆计费规则
+  </view>
+<!-- 1 -->
+  <view class="rule_center" style="height:148rpx">
+  <view style="height:40rpx;" class="center_box"> 
+  <view>基础费用</view>
+  <view class="font24c3">起步价{{baseTimeFee || 2}}元/10分钟</view>
+  </view>
+  <view class="center_box_bottom">
+  <view class="font20c9">不足10分钟按10分钟计算</view>
+  <view class="font24c3">超出{{overTimeFee || 1}}元/{{overTime || 10}}分钟</view>
+  </view>
+  <view class="center_box_bottom">
+  <view style="font-size:20rpx;color:#999;margin-top:32rpx">(含租赁费、服务费)</view>
+  </view>
+  </view>
+  <!-- 2 -->
+  <view class="rule_center">
+  <view style="height:40rpx;" class="center_box"> 
+  <view>调度费用 (非还车点)</view>
+  <view class="font24c3">{{dispatchConfig.parkPointFee || 15}}元</view>
+  </view>
+  <view class="center_box_bottom">
+  <view class="font20c9">运营区内还车点外还车需缴纳费用</view>
+  </view>
+</view>
+<!-- 3 -->
+<view class="rule_center">
+  <view style="height:40rpx;" class="center_box"> 
+  <view>调度费用 (运营区域外)</view>
+  <view class="font24c3">{{dispatchConfig.areaFee || 30}}元</view>
+  </view>
+  <view class="center_box_bottom">
+  <view class="font20c9">运营区外还车需缴纳费用</view>
+  </view>
+</view>
+<!-- 4 -->
+<view class="rule_center">
+  <view style="height:40rpx;" class="center_box"> 
+  <view>临时停车正常计费</view>
+  <view class="font24c3"></view>
+  </view>
+  <view class="center_box_bottom">
+  <view class="font20c9">按【基础费用】规则计算</view>
+  </view>
+</view>
+<view class="rule_button_box">
+<button class="rule_button" catchtap="closeRule">知道了</button>
+</view>
+  </view>
+</view>

@@ -1,0 +1,103 @@
+.body{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 24rpx 0 24rpx;
+  background-color: #f8f8f8;
+}
+.noRead {
+  position: absolute;
+  left: 50%;
+  top: 160rpx;
+  transform: translate(-50%,0);
+  color: #888;
+  font-size: 36rpx;
+}
+.nothing_text{
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #999999;
+  }
+.message_box{
+  box-sizing: border-box;
+  padding: 34rpx 0 32rpx 0;
+  height: 146rpx;
+  display: flex;
+  border-bottom: 2rpx solid #eee;
+}
+.box_left{
+  position: relative;
+  width: 92rpx;
+height: 92rpx;
+/* background: pink; */
+opacity: 0.5;
+border-radius: 50rpx;
+}
+
+.left_image{
+width: 92rpx;
+height: 92rpx;
+}
+
+.box_right{
+  box-sizing: border-box;
+  padding:0 0 0 20rpx;
+  width: 590rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+.top{
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+  align-content:center;
+  align-items: center;
+}
+.bottom{
+  /* background-color: red; */
+  width: 540rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  font-size: 20rpx;
+  color: #999;
+}
+.tongzhi{
+  font-size: 28rpx;
+}
+.time{
+  font-size: 20rpx;
+  color: #999;
+}
+
+page{
+  background-color: #F7F4F8;
+}
+
+.message-line:last-child{
+  /* height: 0rpx; */
+  /* margin-top: 30rpx; */
+  display: none;
+}
+.message-wrapper:last-child{
+  /* padding-bottom: 70rpx; */
+  padding-bottom: 50rpx;
+}
+
+.noRead,
+.hadRead{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.noRead,
+.hadRead{
+   padding-top: 20rpx;
+}
+
+.myMessage-header view.active{
+  display: block;
+}
+

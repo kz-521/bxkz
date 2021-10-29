@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: auto;
+  font-family: 微软雅黑;
+}
+.text{
+  margin:-20rpx 56rpx 20rpx 68rpx;
+  padding:0rpx;
+  font-family:"Arial Narrow Bold"
+}
+.helpTitle {
+  /* width: 72px; */
+  height: 25px;
+  font-size: 18px;
+  /* font-family: PingFang-SC-Bold, PingFang-SC; */
+  font-weight: bold;
+  color: #333333;
+  /* line-height: 25px; */
+  height: 86rpx;
+  padding-left: 30rpx;
+  background: #f5f5f5;
+  line-height: 86rpx;  
+  /* font-size: 36rpx; */ 
+}
+
+.container .title {
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx #ededed solid;
+}
+
+.title{
+  font-size: 28rpx;
+  background-color: #fff;
+  height: 86rpx;
+  border-bottom: 2rpx solid #ddd;
+  color: #3fd572;
+}
+/* .margin{ */
+  /* margin-left: 50rpx; */
+/* } */
+.title text {
+  padding-left: 30rpx;
+}
+.container .contents {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+   background: #f3f3f3;
+   font-size:28rpx;
+}
+
+.container item image {
+  width: 50rpx;
+  float: right;
+  height: 50rpx;
+  padding-right: 30rpx;
+}
+.call {
+  color:#007aff; 
+  text-decoration: underline;
+}
+.help{
+  height:86rpx;
+  box-sizing:border-box;
+  padding-right:30rpx
+}

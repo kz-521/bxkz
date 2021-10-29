@@ -1,0 +1,37 @@
+<!--pages/faceDistinguish/startFetch/startFetch.wxml-->
+<view class="startFetch">
+
+  <view class="recogitionTip">
+    <!-- <view class="idTip">确认{{userName}}本人操作</view>
+    <view class="tipMessage">
+      <view>为了防范身份信息被冒用，保障资金安全，请保持正脸</view>
+      <view>在取景框中根据屏幕指示完成识别</view>
+    </view> -->
+
+  </view>
+
+  <view class="imageTip">
+    <!-- <view class="imageTop">
+      <image src="../../images/faceRecognize/shenfenrenzheng@3x.png"></image>
+    </view>
+    <view class="imageBottom">
+      <view>
+        <image src="../../images/faceRecognize/renzheng1@3x.png"></image>
+        <text>正对手机</text>
+      </view>
+      <view>
+        <image src="../../images/faceRecognize/renzheng2@3x.png"></image>
+        <text>光线充足</text>
+      </view>
+      <view>
+        <image src="../../images/faceRecognize/renzheng3@3x.png"></image>
+        <text>放慢动作</text>
+      </view>
+    </view> -->
+  </view>
+
+  <view class="controls">
+    <!-- <button style="background-color:{{mainColor}}" class="startRecog" bindtap="startRecog">开始验证</button>
+    <view class="cancel" catchtap="cancel">取消验证</view> -->
+  </view>
+</view>

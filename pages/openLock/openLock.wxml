@@ -1,0 +1,55 @@
+<!--pages/openLock/openLock.wxml-->
+<view class="openLock">
+  <view class='progress_box' hidden="{{flag}}">
+    <canvas class="progress_bg" canvas-id="canvasProgressbg"></canvas>
+    <canvas class="progress_canvas" canvas-id="canvasProgress"></canvas>
+    <!-- <canvas type="2d" class="progress_bg" canvas-id="canvasProgressbg"></canvas> 
+    <canvas type="2d" class="progress_canvas" canvas-id="canvasProgress"></canvas>  -->
+    <view class="progress_content">
+      <image style='width:300rpx;height:214rpx;' src='{{image}}'></image>
+      <view class="progress_text">
+        <view class="progress_dot" style="background-color: {{dotColor}};"></view>
+        <text class='progress_info'> {{progress_txt}}</text>
+      </view>
+    </view>
+  </view>
+  <view style="margin-top: 15px;font-size: 18px">NO：{{machineNO}}</view>
+  <!-- <cover-view class="zhezao" wx:if="{{flag}}">
+    <cover-view class="t_w">
+      <cover-view class="tanchu_view">
+        <cover-view>
+          <cover-view class="guide-body" style='background-color:{{mainColor}}'>
+            <cover-view class="body-text">
+              请打开蓝牙后点击重试!
+            </cover-view>
+            <cover-image src="{{guideImage}}" style="height: 45vw;width:100%;display:block"></cover-image>
+          </cover-view>
+          <cover-view>
+            <cover-view class="retry" bindtap="retry" style="background-color: {{mainColor}};color: {{textColor}}">重试</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view> -->
+
+  <!-- 改为同层渲染  ***START*** -->
+  <view class="zhezao" wx:if="{{flag}}">
+    <view class="t_w">
+      <view class="tanchu_view">
+        <view>
+          <view class="guide-body" style='background-color:{{mainColor}}'>
+            <view class="body-text">
+              请打开蓝牙后点击重试!
+            </view>
+            <image src="{{guideImage}}" style="height: 45vw;width:100%;display:block"></image>
+          </view>
+          <view>
+            <view class="retry" bindtap="retry" style="background-color: {{mainColor}};color: {{textColor}}">重试</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 改为同层渲染  ***END*** -->
+  
+</view>

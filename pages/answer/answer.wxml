@@ -1,0 +1,136 @@
+<!--pages/answer/answer.wxml-->
+<view class="progress-box" style="margin:20rpx 34rpx 0 34rpx;">
+<view style="background-color:#e5e5e5" class="progress-box1">
+  <view style="background-color:#3fd572;width:{{(mach - 20) * 6.8}}rpx;height:100%;border-radius:50rpx"></view>
+</view>
+  <!-- <progress percent="{{mach}}" active stroke-width="5" class="progress-box1"/> -->
+</view>
+
+<!-- 第一题 -->
+<view class="question" wx:if="{{mach == 20}}">
+  <view class="question_title">
+<view style="margin-right:20rpx">01 骑行中是否需要佩戴头盔?</view>
+</view>
+  <view class="select" catchtap="flag">
+    <view wx:if="{{getNest}}" style="margin-right:20rpx">是</view>
+    <view wx:if="{{getNest}}" class="circle"></view>
+    <view wx:if="{{!getNest}}" style="margin-right:20rpx">是</view>
+    <icon wx:if="{{!getNest}}" class="icon-small" type="success" size="21" class="icon"></icon>
+</view>
+<view class="select" catchtap="getError">
+<view wx:if="{{isError}}" style="margin-right:20rpx">否</view>
+<view wx:if="{{isError}}" class="circle"></view>
+<view wx:if="{{!isError}}" style="margin-right:20rpx">否</view>
+<image wx:if="{{!isError}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/cuowu.png"></image>
+<!-- </view> -->
+</view>
+</view>
+<!-- 第二题 -->
+<view class="question" wx:if="{{mach == 40}}">
+  <view class="question_title">
+<view style="margin-right:20rpx">02 骑行中限制一车一人对载物还有什么要求?</view>
+</view>
+  <view class="select" catchtap="flag">
+    <view wx:if="{{getNest}}" style="margin-right:20rpx">不运载体积或重量超标物品</view>
+    <view wx:if="{{getNest}}" class="circle"></view>
+    <view wx:if="{{!getNest}}" style="margin-right:20rpx">不运载体积或重量超标物品</view>
+    <icon wx:if="{{!getNest}}" class="icon-small" type="success" size="21" class="icon"></icon>
+</view>
+<view class="select" catchtap="getError">
+<view wx:if="{{isError}}" style="margin-right:20rpx">只要装得下,都可以运载</view>
+<view wx:if="{{isError}}" class="circle"></view>
+<view wx:if="{{!isError}}" style="margin-right:20rpx">只要装得下,都可以运载</view>
+<image wx:if="{{!isError}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/cuowu.png"></image>
+<!-- </view> -->
+</view>
+</view>
+<!-- 第三题 -->
+<view class="question" wx:if="{{mach == 60}}">
+  <view class="question_title">
+<view style="margin-right:20rpx">03 再次答题还能减免调度费吗?</view>
+</view>
+  <view class="select" catchtap="getError">
+    <view wx:if="{{isError}}" style="margin-right:20rpx">能,每次都可以用答题来减免</view>
+    <view wx:if="{{isError}}" class="circle"></view>
+    <view wx:if="{{!isError}}" style="margin-right:20rpx">能,每次都可以用答题来减免</view>
+    <image wx:if="{{!isError}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/cuowu.png"></image>
+</view>
+<view class="select" catchtap="flag">
+<view wx:if="{{getNest}}" style="margin-right:20rpx">不能,只有第一次可以减免</view>
+<view wx:if="{{getNest}}" class="circle"></view>
+<view wx:if="{{!getNest}}" style="margin-right:20rpx">不能,只有第一次可以减免</view>
+<icon wx:if="{{!getNest}}" class="icon-small" type="success" size="21" class="icon"></icon>
+<!-- </view> -->
+</view>
+</view>
+<!-- 第四题 -->
+<view class="question" wx:if="{{mach == 80}}">
+  <view class="question_title">
+<view style="margin-right:20rpx">02 可以骑去任何地方吗?</view>
+</view>
+  <view class="select" catchtap="getError">
+    <view wx:if="{{isError}}" style="margin-right:20rpx">可以,没有限制</view>
+    <view wx:if="{{isError}}" class="circle"></view>
+    <view wx:if="{{!isError}}" style="margin-right:20rpx">可以,没有限制</view>
+    <image wx:if="{{!isError}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/cuowu.png"></image>
+</view>
+<view class="select" catchtap="flag">
+<view wx:if="{{getNest}}" style="margin-right:20rpx">不可以,有划定的骑行区域</view>
+<view wx:if="{{getNest}}" class="circle"></view>
+<view wx:if="{{!getNest}}" style="margin-right:20rpx">不可以,有划定的骑行区域</view>
+<icon wx:if="{{!getNest}}" class="icon-small" type="success" size="21" class="icon"></icon>
+
+<!-- </view> -->
+</view>
+</view>
+<!-- 第五题 -->
+<view class="question" wx:if="{{mach == 100}}" style="height:550rpx">
+  <view class="question_title">
+<view style="margin-right:20rpx">05 骑行结束后,该如何还车?</view>
+</view>
+  <view class="select" catchtap="select">
+    <view wx:if="{{select1}}" style="margin-right:20rpx">在系统提示P点内还车</view>
+    <view wx:if="{{select1}}" class="circle" style="border-radius:0rpx"></view>
+    <view wx:if="{{!select1}}" style="margin-right:20rpx">在系统提示P点内还车</view>
+    <image wx:if="{{!select1}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/map/select.png"></image>
+</view>
+<view class="select" catchtap="select2">
+    <view wx:if="{{select2}}" style="margin-right:20rpx">归还头盔并上锁</view>
+    <view wx:if="{{select2}}" class="circle" style="border-radius:0rpx"></view>
+    <view wx:if="{{!select2}}" style="margin-right:20rpx">归还头盔并上锁</view>
+    <image wx:if="{{!select2}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/map/select.png"></image>
+</view>
+<view class="select" catchtap="select3">
+    <view wx:if="{{select3}}" style="margin-right:20rpx">车辆垂直于马路摆放</view>
+    <view wx:if="{{select3}}" class="circle" style="border-radius:0rpx"></view>
+    <view wx:if="{{!select3}}" style="margin-right:20rpx">车辆垂直于马路摆放</view>
+    <image wx:if="{{!select3}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/map/select.png"></image>
+</view>
+<view class="select" catchtap="select4">
+<view wx:if="{{select4}}" style="margin-right:20rpx">完成支付</view>
+<view wx:if="{{select4}}" class="circle" style="border-radius:0rpx"></view>
+<view wx:if="{{!select4}}" style="margin-right:20rpx">完成支付</view>
+<image wx:if="{{!select4}}" style="width:46rpx;height:46rpx;margin-top:26rpx" src="../../images/map/select.png"></image>
+
+<!-- </view> -->
+</view>
+</view>
+
+<!-- 下一题盒子 -->
+<view class="next_button_box" catchtap="toGiveUp" style="color:#3fd572;background-color:white;">
+<view style="font-size:32rpx;margin-right:20rpx">
+放弃答题
+</view>
+<view style="font-size:26rpx">
+<text>{{count}}</text>
+</view>
+</view>
+
+<view class="next_button_box" catchtap="toNest" style="left:382rpx">
+<view style="font-size:32rpx;margin-right:20rpx">
+下一题
+</view>
+<view style="font-size:26rpx">
+<text>{{ mach/20}}</text>/5
+</view>
+</view>

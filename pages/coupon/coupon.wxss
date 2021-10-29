@@ -1,0 +1,110 @@
+.coupon{
+  height: 100%;
+  padding: 40rpx 24rpx 0 24rpx;
+  overflow-y: scroll;
+  background-color: #f8f8f8;
+  -webkit-overflow-scrolling: touch;       
+  /* ios设备下的惯性滚动 */
+  /* margin-bottom: 80px; */
+}
+.can{
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  font-weight:700
+} 
+.card{
+  position: relative;
+  color: #3fd573;
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 16rpx;
+  border-left: 22rpx solid #3fd572;
+  /* border-right: 22rpx solid #fff; */
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  display: flex;
+}
+.right_top_title{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 168rpx;
+  height: 54rpx;
+  color: #fff;
+   background-color:#3fd572;
+   text-align:center;
+  border-radius: 0 16rpx 0 78rpx;
+}
+
+.left{
+box-sizing: border-box;
+margin: 42rpx 0 40rpx 0 ;
+  width: 216rpx;
+  height: 138rpx;
+  border-right: 2rpx solid rgba(200,200,200,.5);
+  /* opacity: 0.5; */
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+/* justify-content: space-around; */
+align-content: center;
+}
+.right{
+  box-sizing: border-box;
+margin: 42rpx 0 40rpx 0 ;
+padding: 0 0 0 22rpx;
+width: 440rpx;
+height: 138rpx;
+background-color: #fff;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+.mach{
+  height: 100rpx;
+  font-size: 50rpx;
+  text-align: center;
+  /* background-color: green; */
+}
+.card_type{
+  display: flex;
+  justify-content:space-between;
+}
+.type{
+  font-size: 32rpx;
+  color: #333;
+  font-weight:700;
+}
+/* .can_use{
+  width: 148rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #3fd572;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: white;
+} */
+.time{
+  width: 440rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  color: #999;
+
+}
+.card_name{
+font-size: 26rpx;
+text-align: center;
+/* background-color: red; */
+/* margin-bottom: 50rpx; */
+}
+
+.none{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  color: #a0a0a0;
+  font-size: 40rpx;
+}

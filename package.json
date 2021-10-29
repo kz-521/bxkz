@@ -1,0 +1,24 @@
+{
+  "name": "shared_bike_mp_new2",
+  "version": "1.0.0",
+  "description": "共享小程序",
+  "main": "app.js",
+  "dependencies": {
+    "@miniprogram-component-plus/col": "^1.0.0",
+    "@miniprogram-component-plus/row": "^1.0.0",
+    "docxtemplater": "^3.23.1",
+    "miniprogram-sm-crypto": "^0.3.4",
+    "weui-miniprogram": "^1.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/uqbike/shared_bike_mp_new.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

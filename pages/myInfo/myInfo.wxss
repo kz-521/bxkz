@@ -1,0 +1,118 @@
+.box1{
+  height: 160rpx;
+  background-color: #3fd572;
+}
+.version{
+  color: #A4A4A4;
+  text-align: center;
+  margin-top: 20rpx
+}
+
+.info2{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 3vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.main{
+  border: 1rpx solid #fff;
+  border-radius: 16rpx;
+  margin: 0rpx 24rpx;
+  background-color: #fff;
+  padding: 0px 32rpx;
+box-shadow: 0px 3px 10px -2px rgba(136, 136, 136, 0.5);
+}
+.main_item{
+  display: flex;
+  justify-content: start;
+  align-content: center;
+  align-items: center;
+  height: 112rpx;
+  border-bottom: 1px solid #ddd;
+}
+.main_item:last-child {
+  border-bottom: none;
+}
+
+.header_pohto{
+  box-sizing: border-box;
+  margin-right: 2vw;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50rpx;
+  line-height: 104rpx;
+  vertical-align: center;
+  overflow: hidden;
+  
+}
+.header_pohto>image{
+  width: 100%;
+  height: 100%;
+}
+.phone_num{
+  width: 75vw;
+  color: #fff;
+  font-size: 40rpx;
+}
+.header_phone_num{
+  box-sizing: border-box;
+  padding: 0 50rpx 0 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+  height: 100rpx;
+  width: 75%;
+  line-height: 100rpx;
+}
+
+.item-start{
+  flex: 1;
+  margin-top: 10rpx;
+}
+.item-center{
+  flex:8;
+  font-size: 32rpx;
+}
+.item-bottom{
+  justify-content: flex-end;
+}
+.avatar-num{
+  border-radius: 50%;
+  background-color:red;
+  color: #fff;
+  font-size: 26rpx;
+  margin-right: 24rpx;
+}
+
+.active-avatar{
+  box-shadow: 0 0 10rpx rgba(0,0,0,.6)
+}
+
+.img1 image {
+  height: 60rpx;
+  width: 60rpx;
+  margin-right: 16rpx;
+}
+
+.img2 image{
+  height: 50rpx;
+  width: 75rpx;
+  margin-right: 16rpx;
+}
+
+.quit-account-container {
+  box-sizing: border-box;
+  padding-top: 16rpx;
+  margin-top: 5%;
+}
+
+.quit-account {
+  width: 702rpx;
+  height: 112rpx;
+  color:#fff;
+  font-size: 40rpx;
+}

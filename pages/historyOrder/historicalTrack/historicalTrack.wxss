@@ -1,0 +1,177 @@
+.query{
+  /* padding: 20rpx 36rpx 0 42rpx;  */
+  text-align: center;
+  background-color: #3fd572;
+  color: #fff;
+  width: 672rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  border-radius: 0;
+}
+.no_pay_top{
+  justify-content:space-between;
+  align-content:center;
+  align-items:center; 
+  height:126rpx;
+   box-sizing:border-box;
+   padding:0 44rpx 0 42rpx;
+}
+
+.is_pay{
+  justify-content: space-around;
+  flex-direction:column;
+   padding: 20rpx 30rpx 0rpx 44rpx;
+   border-top:2rpx solid #f6f6f6;
+   width:676rpx;
+}
+.color999{
+  color:999
+}
+
+.no_pay_query1{
+  text-align: center;
+  width: 672rpx;
+  color: #fff;
+  background-color: #3fd572;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+}
+
+.historical-track{
+  height: 100%;
+}
+
+.historical-track > map{
+  height: 99%;
+  width: 100%;
+  z-index: 10;
+}
+
+.card{
+  /* height:709rpx; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+.bottom{
+  font-size: 26rpx;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 676rpx;
+  align-content:space-around ;
+}
+
+.card-item{
+  /* height:709rpx; */
+  background-color: #fff;
+  box-shadow: 0 0 12rpx rgba(0,0,0,.4);
+  border-radius: 16rpx;
+}
+
+.card-item>view{
+  display: flex;
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.card-item text{
+  font-size: 50rpx;
+  color: #333;
+}
+
+
+.zhezao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.questionnaire{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height:616rpx;
+  background-color: #fff;
+  /* border-radius: 16px 16px 0px 0px; */
+}
+.pink_go{
+  font-size: 28rpx;
+  text-align: center
+  ;color: #ff8686;
+  position:relative
+}
+.pink_right{
+  position:absolute;
+  top: -3rpx;
+  right: 120rpx;
+}
+/* .questionnaire-title{
+  box-sizing: border-box;
+  height: 74rpx;
+  line-height: 74rpx;
+  padding: 0rpx 44rpx;
+  text-align: center;
+  display: flex;
+  justify-content:space-between;
+  background-color: #fff;
+  font-size: 34rpx;
+  color: #ff6622;
+border: 1px solid #EEEEEE;
+border-radius: 16px 16px 0px 0px;
+} */
+/* .have_bad{
+  padding: 30px 15px;
+  wxcs_style_padding: 40rpx 30rpx 60rpx 30rpx;
+} */
+.bottom_box{
+  height: 356rpx;
+}
+.bottom_item{
+  width: 100%;
+  height: 34rpx;
+  font-size: 26rpx;
+  color:#333;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+}
+.padding{
+  padding-right: 46rpx;
+}
+
+.questionnaire-body{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.no{
+  width: 294rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  border: 2rpx solid #666666;
+  color: #333;
+  margin-bottom: 40rpx;
+  /* background-color: #fff; */
+}
+/* .questionnaire-body > view{
+  width: 45%;
+  /* border: 2rpx solid #888; */
+  /* text-align: center;
+  border-radius: 50rpx;
+  padding: 20rpx 0;
+  margin-top: 30rpx;
+} */ 
+.sendReport{
+  background-color: red;
+}

@@ -1,0 +1,120 @@
+
+<!-- 用户处理页面数据，保留两位小数点 -->
+<wxs module="m1">
+     var toFixedFn = function(price) {
+    return Number(price).toFixed(2)
+  }
+  var toFixedFn1 = function(price) {
+    if((price - (price.toFixed(0))) === 0) {
+      return price
+    }
+    return Number(price).toFixed(1)
+  }
+  module.exports = {
+    toFixedFn:toFixedFn,
+    toFixedFn1:toFixedFn1
+  };
+  </wxs>
+
+<scroll-view class="historyOrder">
+  <view wx:if="{{historyOrders.length > 0}}" class="historyOrderWarp">
+     <!-- 列表 有骑行记录 -->
+    <view wx:if="{{historyOrders.length > 0}}" class="main_bottom">
+     <view style="background-color:#fff;border-radius: 16rpx;" 
+           wx:for="{{historyOrders}}" 
+           wx:key="accountId" 
+           data-item="{{item}}"
+           bindtap="toTrack">
+     <!-- item 小车车图标 头部 -->
+      <view class="card_top">
+        <view class="top_left1">
+          <image src="../../images/qixing.png" class="image" style="margin-right:20rpx"></image>
+          <text style="font-weight: 700;">{{item.endTime || item.startTime}}</text>
+        </view>
+        <view style="color:#838383;width:15%;font-size:28rpx;margin-top:-8rpx; color:{{item.theOne ? 'red' : '#999'}}">
+        {{item.theOne ? '未完成' : '已完成'}}
+        </view>
+      </view>
+      <!-- 记录列表项下部 -->
+      <!-- <view class="card_bottom" style="background-color: red;"> -->
+        <view class="card_bottom">
+        <!-- 下 左 -->
+        <view class="bottom_left" style="flex:6;height: 172rpx;box-sizing: border-box;padding-top: 12rpx;">
+        <view style="height:54rpx">
+        <text style="color:#999;font-size:28rpx" decode="{{true}}">骑行里程 &nbsp;</text> 
+        <text style="font-weight: 700;font-size:28rpx"> {{m1.toFixedFn1(item.mileage)}}公里</text>
+        </view>
+        <view style="height:54rpx">
+          <text style="color:#999;font-size:28rpx" decode="{{true}}">骑行时长 &nbsp;</text> 
+          <text style="font-weight: 700;font-size:28rpx"> {{item.time / 60}}分钟</text>
+        </view>
+          <view style="height:54rpx">
+            <text style="color:#999;font-size:28rpx" >订单金额　</text>
+            <text style="font-weight: 700;font-size:28rpx">{{item.all }}元</text>
+          </view>
+        </view>
+        <!-- <view class="right" style="box-sizing: border-box;background-color: pink;"> -->
+        <!-- 下 右 -->
+          <view class="right" style="box-sizing: border-box;">
+          <mp-icon icon="arrow" color="#3fd572" size="{{16}}" style="margin-right: 16rpx;"></mp-icon>
+        </view>
+      </view>
+     </view>
+    </view>
+  </view>
+  
+  <view wx:if="{{historyOrders.length == 0}}" class="historyOrderWarpNo">
+    <!-- 没有记录 显示暂无骑行记录 -->
+    <view wx:if="{{historyOrders.length == 0}}" class="nothing"> 
+    <image style="width:304rpx;height:304rpx;" src="../../images/ridingHistory/nothing.png"></image>
+   </view>
+  <view wx:if="{{historyOrders.length == 0}}" style='text-align:center'>
+    <text class="nothing_text">暂无骑行记录</text>
+  </view>
+  </view>
+
+   <!-- 吸顶 三个指数 -->
+<view class="ceiling" wx:if="{{historyOrders.length > 0}}">
+  <view  class="main_top">
+      <view class="top_box">
+        <view class="top_left2">
+       <view style="display: flex; flex-direction: row;justify-content: center; align-items: center; align-content: center;">
+        <image src="../../images/historyOrder/gongli.png" style="width: 32rpx; height: 32rpx;margin-right: 9rpx;"></image>
+          <view class="top_num">{{ m1.toFixedFn1(mileageAll) || 0 }}</view>
+       </view>
+          <view class="top_text">里程 (公里)</view>
+      <view>
+      </view>
+        </view>
+        <view class="top_left">
+          <view style="display: flex; flex-direction: row; align-items: center; align-content: center;" >
+            <image src="../../images/historyOrder/jianpai.png" style="width: 32rpx; height: 32rpx;margin-right: 9rpx;"></image>
+          <view class="top_num">{{m1.toFixedFn1(mileageAll * 0.27) || 0}}</view>
+       </view>
+          <view class="top_text"> 减排 (千克)</view>
+      <view>
+      </view>
+        </view>
+        <view class="top_left">
+          <view style="display: flex; flex-direction: row; align-items: center; align-content: center;" >
+          <image src="../../images/historyOrder/zhishu.png" style="width: 26rpx; height: 32rpx;margin-right: 9rpx;"></image>
+          <view class="top_num">{{ m1.toFixedFn(mileageAll / 740) || 0}}</view>
+       </view>
+          <view class="top_text">相当于植树 (颗)</view>
+      <view>
+      </view>
+        </view>
+      </view>
+    </view>
+      <!-- 吸顶 日期选择器 -->
+  <!-- <view class="date">
+    {{time}} 
+    <!-- 吸顶 旋转 右边的按钮 -->
+    <!-- <picker mode= "date" fields="month" bindchange="bindTimeChange">
+      <view style="transform:rotate(90deg);display:inline-block;margin-left:12rpx;">
+        <mp-icon icon="arrow" color="black" size="{{13}}"></mp-icon>
+      </view>
+    </picker>
+  </view> --> 
+</view>
+</scroll-view>

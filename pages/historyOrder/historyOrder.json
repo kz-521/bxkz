@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "骑行记录",
+    "usingComponents": {
+        "mp-icon": "weui-miniprogram/icon/icon"
+      }
+}

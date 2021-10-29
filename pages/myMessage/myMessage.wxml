@@ -1,0 +1,50 @@
+<view class="body">
+<!-- 消息盒子 -->
+<!-- 未读消息盒子 -->
+	 <view  wx:if="{{noReadArr.length > 0}}">
+	 <view class="message_box" wx:for="{{noReadArr}}" wx:key="index">
+	 	 <!-- 盒子左侧图标 -->
+			<view class="box_left" bindtap="readHadMessage" data-index="{{index}}">
+			<image class="left_image" src="../../images/mynews.png" alt=""/>
+			<mp-badge style="position: absolute;top: -20rpx;right: -4rpx;" ext-class="blue"/>
+		</view>
+		<!-- 盒子右侧 -->
+		 <view class="box_right" bindtap="readMessage" data-index="{{index}}"> 
+		<view class="top">
+			<view class="tongzhi">{{item.title}}</view>
+			<view class="time">{{item.createTime}}</view>
+		</view>
+		<view class="bottom">{{item.content}}</view>
+		</view>
+	 </view>
+	 </view> 
+
+<!-- 已经读过了 -->
+	 <view  wx:if="{{hadReadArr}}">
+	 <view class="message_box" wx:for="{{hadReadArr}}" wx:key="index">
+	 	 <!-- 盒子左侧图标 -->
+	  <view class="box_left" bindtap="readHadMessage" data-index="{{index}}">
+			<image class="left_image" src="../../images/mynews.png" alt=""/>
+			<!-- <mp-badge style="position: absolute;top: -20rpx;right: -4rpx;" ext-class="blue"/> -->
+		</view>
+		<!-- 盒子右侧 -->
+		<view class="box_right" bindtap="readHadMessage" data-index="{{index}}">
+		<view class="top">
+			<view class="tongzhi">{{item.title}}</view>
+			<view class="time">{{item.createTime}}</view>
+		</view>
+		<view class="bottom">{{item.content}}</view>
+		</view>
+	</view>
+	 </view> 
+
+	 <!-- 没有更多了 -->
+	 <view class='noRead'>
+		<view wx:if="{{hadReadArr.length == 0 && noReadArr.length == 0 }}" class="nothing"> 
+    <image style="width:304rpx;height:304rpx;" src="../../images/ridingHistory/nothing.png"></image>
+   </view>
+  <view wx:if="{{hadReadArr.length==0 && noReadArr.length == 0 }}" style='text-align:center'>
+    <text class="nothing_text">暂无消息</text>
+  </view>
+    </view>
+</view>

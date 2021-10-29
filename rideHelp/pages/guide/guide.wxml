@@ -1,0 +1,41 @@
+<!-- <web-view src="http://guide.bxkuaizu.cn"></web-view> -->
+<!-- <web-view src="https://www.baidu.com"></web-view> -->
+<view class="use_car">
+<image src="../../image/title.png" style="width:100%;height:100%"></image>
+</view>
+<!-- 1 大盒子 -->
+ <view class="item_box">
+<view class="title">  第一步：找车</view>
+<view class="item_title"> 1，定位当前所在位置，点击车辆图标，查看该车辆可骑行里程。</view>
+<view class="item_image"><image src="../../image/1.1@3x.png" style="width:100%;height:100%"></image></view>
+<view class="item_title">  2，预约该车辆，根据寻车导航指引移动，到车辆附近点击响铃，车辆发出响声。</view>
+<view class="item_image"> <image src="../../image/1.2@3x.png" style="width:100%;height:100%"></image></view>
+<view class="title">   第二步：开锁骑行</view>
+<view class="item_title"> 1，开锁前请先确定目的地能否还车，需在运营区内骑行，车辆骑至运营区外会断电，骑回运营区恢复续电，缩放地图，红色阴影区是运营区，地图上的P点是还车点。</view>
+<view class="item_image"> <image src="../../image/2.1@3x.png" style="width:100%;height:100%"></image></view>
+<view class="item_title">  2，扫码车身二维码立即开锁，带上头盔，转动右车把即可骑行。</view>
+<view class="item_image"> <image src="../../image/2.2@3x.png" style="width:100%;height:100%"></image></view>
+<view class="item_title"> 3，如果中途有事，可以临时锁车，锁车期间会持续计费。</view>
+<view class="item_image"> <image src="../../image/2.3@3x.png" style="width:100%;height:100%"></image></view>
+<view class="title">  第三步：还车</view>
+<view class="item_title">  1，确定到达运营区内还车点，点击我要还车，若不在还车点还车，将支付15元调度费</view>
+<view class="item_image"> <image src="../../image/3.1@3x.png" style="width:100%;height:100%"></image></view>
+<view class="title">   温馨提示:</view>
+</view>
+
+<view class="item_box" wx:for="{{items}}" wx:key="index">
+<view class="item_title">
+ {{item.title}}
+</view>
+<view class="item_image" style="width:{{item.width}};height:{{item.height}};margin-left:{{item.marl}}"> 
+<image wx:if="{{item.src}}" lazy-load show-menu-by-longpress src="{{item.src}}" style="width:100%;height:100%"></image>
+</view>
+</view>
+<view class="tip_box">
+  <view class="tip_title" wx:for="{{not}}" wx:key="index">
+<image src="{{item}}" style="width:100%;height:100%"></image>
+</view>
+</view>
+
+
+

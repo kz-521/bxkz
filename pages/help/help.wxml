@@ -1,0 +1,25 @@
+
+<view class='container'>
+  <!-- 常见问题 -->
+  <text class="helpTitle">常见问题</text>
+  <view wx:for="{{questions}}" wx:key="id">
+    <view class="title" 
+          data-item="{{item}}"  
+          bindtap='showContents' 
+          data-selected="{{index}}" 
+          style="height:86rpx">
+      <text>{{item.id}} </text>
+      <text class="iconfont {{selected == index ? 'icon-xia' : 'icon-you'}}" style="margin-right: 30rpx;color:#000"></text>
+    </view>
+    <view wx:if="{{selected == index}}"  class="contents">
+      <text class="text">
+       {{item.value}}
+      </text>
+    </view>
+  </view>
+  <!-- 人工客服 -->
+  <view class="title" catchtap="phoneCall" style="height:86rpx;box-sizing:border-box;padding-right:30rpx">
+      <text>联系人工客服:早7:00-凌晨1:00</text>
+      <text class="call">点击拨打</text>
+    </view>
+</view>

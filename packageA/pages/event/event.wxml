@@ -1,0 +1,9 @@
+<!--pages/event/event.wxml-->
+<!-- <text>pages/event/event.wxml</text> -->
+ <view class="main">  
+ <block wx:for="{{eventList}}" wx:key="index">
+  <view class="event_item">
+    <image class="ad" src="{{item.src}}"></image>
+  </view>
+ </block>
+</view>

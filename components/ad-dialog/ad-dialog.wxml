@@ -1,0 +1,38 @@
+<view class="zhezhao" wx:if="{{visible}}">
+  <view class="t_w" style="{{setTop ? 'top: ' + setTop : ''}}">
+    <!--弹出框开始-->
+    <view class="tanchu_view">
+      <view>
+        <swiper 
+          style="height: 380px;"
+          indicator-dots="{{indicatorDots}}"
+          circular="true"
+          autoplay="{{autoplay}}" 
+          interval="{{interval}}" 
+          duration="{{duration}}"
+          indicator-active-color="#ffffff"
+        >
+          <block wx:for="{{imgUrls}}" wx:key="index">
+            <swiper-item>
+              <view class="image-border">
+                <image bindtap="toTarget" data-url="{{item.target}}" src="{{item.src}}" class="slide-image" mode="cover" id="img_{{index}}" />
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+
+        <!-- <cover-view class="guide-bottom">
+          <cover-image bindtap="knownTap" src="/images/zhezhao/cross.png" style="height: 30px;width: 30px"></cover-image>
+        </cover-view> -->
+
+        <!-- 改为同层渲染  ***START*** -->
+        <view class="guide-bottom">
+          <image bindtap="knownTap" src="/images/zhezhao/cross.png" style="height: 30px;width: 30px"></image>
+        </view>
+        <!-- 改为同层渲染  ***END*** -->
+
+      </view>
+    </view>
+    <!--弹出框结束-->
+  </view>
+</view>

@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/map/map",
+    "pages/advice/advice",
+    "pages/agreement/agreement",
+    "pages/authentication/authentication",
+    "pages/coupon/coupon",
+    "pages/deposit/deposit",
+    "pages/faceRecognition/faceRecognizing/faceRecognizing",
+    "pages/faceRecognition/faceRecognition",
+    "pages/historyRecharge/historyRecharge",
+    "pages/historyOrder/historyOrder",
+    "pages/historyOrder/historicalTrack/historicalTrack",
+    "pages/instructions/instructions",
+    "pages/login/login",
+    "pages/maintain/maintain",
+    "pages/myMessage/myMessage",
+    "pages/myMessage/detailMessage/detailMessage",
+    "pages/myInfo/myInfo",
+    "pages/machineStatus/machineStatus",
+    "pages/openLock/openLock",
+    "pages/studentAuth/studentAuth",
+    "pages/recharge/recharge",
+    "pages/ridePackage/ridePackage",
+    "pages/ridePackage/historyRidePackage/historyRidePackage",
+    "pages/help/help",
+    "pages/wallet/wallet",
+    "pages/wallet/record/record",
+    "pages/urlTarget/urlTarget",
+    "components/ad-dialog/ad-dialog" 
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "没有位置信息，将无法使用小程序，请允许"
+    }
+  },
+  "subpackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/event/event",
+        "pages/fault/fault"
+      ]
+    },
+    {
+      "root": "rideHelp",
+      "pages": [
+        "pages/guide/guide"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#3fd572",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#ffffff"
+  },
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "requiredBackgroundModes": [
+    "location"
+  ]
+}

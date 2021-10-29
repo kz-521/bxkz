@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "我的信息",
+  "navigationBarBackgroundColor":"#3fd572",
+  "disableScroll": true,
+  "usingComponents": {
+        "mp-navigation-bar": "weui-miniprogram/navigation-bar/navigation-bar",
+        "mp-dialog": "weui-miniprogram/dialog/dialog",
+        "mp-icon": "weui-miniprogram/icon/icon",
+        "mp-badge": "weui-miniprogram/badge/badge",
+        "mp-cells": "weui-miniprogram/cells/cells",
+        "mp-cell": "weui-miniprogram/cell/cell"
+      }
+}

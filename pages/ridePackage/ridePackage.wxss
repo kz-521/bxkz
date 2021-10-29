@@ -1,0 +1,190 @@
+/* machineStatus.wxss */
+
+.top_img{
+  color: #fff;
+  width: 702rpx;
+  height: 224rpx;
+  margin: 40rpx 24rpx ;
+  background-color: #3fd572;
+  display: flex;
+  box-sizing: border-box;
+  padding:  0 80rpx;
+  border-radius: 16rpx;
+}
+.left{
+  display: flex;
+  flex-direction: column;
+}
+
+.top-tip{
+  margin: 0 40rpx 0 40rpx;
+  color:black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.choose{
+   font-weight:700;
+   font-size: 28rpx;
+}
+.history{
+ font-size:28rpx;
+  color:#999;
+}
+
+.top-tip>view{
+  /* font-weight:700; */
+  font-size: 38rpx;
+}
+
+/* .content {
+  margin: 30rpx 40rpx 0 40rpx;
+  background-color: red;
+} */
+.content_one{
+  background-color: #fafafa;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  margin: 20rpx 24rpx 20rpx 24rpx;
+  width: 702rpx;
+  height: 168rpx;
+  border: 4rpx solid #999;
+  border-radius: 16rpx;
+  display: flex;
+}
+.one_left{
+  width: 52%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* align-items: center; */
+  align-content:flex-start;
+}
+
+.one_right{
+  width: 48%;
+  margin-right: 10rpx;
+  display: flex;
+  /* background-color: green; */
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  font-weight:700;
+  font-size:#3fd572;
+}
+.modeList {
+  position: relative;
+  padding: 12rpx 30rpx;
+  background-color: #fafafa;
+  border-radius: 10rpx;
+  transition: all 200ms linear;
+  box-shadow: 0 0 4rpx rgba(0, 0, 0, .6);
+  margin-bottom: 30rpx;
+}
+
+.item-title{
+  font-weight: 600;
+  font-size: 34rpx;
+  width: 80%;
+}
+
+.selected {
+  transform: scale(1.03);
+}
+
+.item-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.pay-btn {
+  width: 100%;
+  height: 196rpx;
+  line-height: 100rpx;
+  position: fixed;
+  z-index: 99;
+  font-size: 36rpx;
+  transition: all 200ms linear;
+  background-color: #fff;
+  
+}
+
+.pay-btn text{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80rpx;
+}
+
+.explain {
+  margin: 10rpx 40rpx 120rpx 40rpx;
+  color: #666;
+  width: 90%;
+  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+}
+
+.explain text{
+ color: #666;
+ font-size:11pt;
+}
+
+.use-tip1{
+  display: flex;
+  flex-direction: column;
+}
+
+.use-tip2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-time {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #888888;
+  text-align: left;
+}
+
+.package-container {
+  display: flex;
+  align-items: center;
+  flex: 4;
+}
+
+.item-money {
+  font-weight: 600;
+}
+
+.pay-tip{
+  margin: 40rpx 40rpx 0 40rpx;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.free-deposit {
+  padding: 4rpx 18rpx;
+  margin-left: 18rpx;
+  font-weight: 400;
+  font-size: 26rpx;
+  border-radius: 10rpx;
+}
+
+.discount {
+  position: absolute;
+  right: 30rpx;
+  top: 16rpx;
+  font-weight: 600;
+  font-size: 28rpx;
+  color: #444;
+}
+.button{
+  width: 672rpx;
+  margin: 20rpx 36rpx 68rpx 42rpx;
+}

@@ -1,0 +1,121 @@
+<!--pages/maintain/maintain.wxml-->
+<!-- <text>pages/maintain/maintain.wxml</text> -->
+<view>
+  <view class="main">
+<!-- 保修扫码 -->
+<view class="saoma">
+<!-- 保修扫码 input -->
+<view class="input">
+  <input class="input" type="number" maxlength="9" bindinput="inputTitle" value="{{machineNO}}" placeholder="输入车辆编号或扫描二维码"/>
+</view>
+<!-- 二维码 -->
+<view class="erweima" bindtap="openScanCode">
+  <image style="width:40rpx;height:40rpx;margin-top:10rpx;transform:translate(0,25%);" src="../../images/erweima.png"></image>
+</view>
+</view>
+<!-- 选择故障部位 -->
+<view  class="bad_title">
+  选择故障部位
+</view>
+<!-- 选择故障部位的img占位盒子 -->
+<view class="bad_image_box">
+<view  class="item marr12" catchtap="change" data-num="1"> 
+<image wx:if="{{error1}}" src="../../images/car1.png" style="width:100%;height:100%;"></image>
+<image wx:else src="../../images/car11.png" style="width:100%;height:100%;"></image>
+</view>
+<view  class="item"   catchtap="change" data-num="2"> 
+<image wx:if="{{error2}}" src="../../images/car2.png" style="width:100%;height:100%;"></image>
+<image wx:else src="../../images/car22.png" style="width:100%;height:100%;"></image>
+</view>
+<view  class="item marr12"  catchtap="change" data-num="3"> 
+<image wx:if="{{error3}}" src="../../images/car3.png" style="width:100%;height:100%;"></image>
+<image wx:else src="../../images/car33.png" style="width:100%;height:100%;"></image>
+</view>
+<view  class="item" catchtap="change" data-num="4"> 
+<image wx:if="{{error4}}" src="../../images/car4.png" style="width:100%;height:100%;"></image>
+<image wx:else src="../../images/car44.png" style="width:100%;height:100%;"></image>
+</view>
+<view class="other_item marr12" style="width:226rpx;margin-right:12rpx" catchtap="change" data-num="5">
+  <image wx:if="{{error5}}" src="../../images/car5.png" style="width:100%;height:100%;"></image>
+  <image wx:else src="../../images/car55.png" style="width:100%;height:100%;"></image>
+</view>
+<view class="other_item marr12" style="width:226rpx;margin-right:12rpx" catchtap="change" data-num="6">
+  <image wx:if="{{error6}}" src="../../images/car6.png" style="width:100%;height:100%;"></image>
+  <image wx:else src="../../images/car66.png" style="width:100%;height:100%;"></image>
+</view>
+<view class="other_item" style="width:224rpx;"  catchtap="change" data-num="7">
+  <image wx:if="{{error7}}" src="../../images/car7.png" style="width:100%;height:100%;"></image>
+  <image wx:else src="../../images/car77.png" style="width:100%;height:100%;"></image>
+</view>
+</view>
+
+<!-- 1 -->
+<view wx:if="{{current == 1 && !error1 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+<view wx:for="{{table1}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="1">{{item.name}}</view>
+</view>
+<!-- 2 -->
+<view wx:if="{{current == 2 && !error2 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+<view wx:for="{{table2}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="2">{{item.name}}</view>
+</view>
+<!-- 3 -->
+<view wx:if="{{current == 3 && !error3 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+<view wx:for="{{table3}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="3">{{item.name}}</view>
+</view>
+<!-- 4 -->
+<view wx:if="{{current == 4 && !error4 == true}}" style=" display:flex;flex-direction:row; justify-content:space-start; flex-wrap: wrap;">
+  <view wx:for="{{table4}}" style="margin:{{item.margin}};" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="4" >{{item.name}}</view>
+</view>
+
+<!-- 5 -->
+<view wx:if="{{current == 5 && !error5 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+  <view wx:for="{{table5}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="5" >{{item.name}}</view>
+</view>
+<!-- 6 -->
+<view wx:if="{{current == 6 && !error6 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+  <view wx:for="{{table6}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="6" >{{item.name}}</view>
+</view>
+<!-- 7 -->
+<view wx:if="{{current ==7 && !error7 == true}}"  style="width:700rpx; display:flex;flex-direction:row; justify-content:space-between; flex-wrap: wrap;">
+  <view wx:for="{{table7}}" wx:key='index' class="{{ !item.class?  'car_item_no' : 'car_item'  }}" catchtap="getError" data-item="{{item.index}}" data-type="7">{{item.name}}</view>
+</view>
+
+<!-- 故障描述 -->
+  <view class="other_bad">
+    <view style="overflow:hidden;height:150rpx">
+      <textarea style="width:100%;height:100%" placeholder="车辆问题描述。" maxlength="200" class="inputContent"  value="{{fault}}" bindinput="bindTextAreaBlur" />
+    </view>
+    <view  class="num">
+    <text >  {{fault.length }}/200</text>
+    </view>
+</view>
+
+<!-- 拍摄故障部位 的title -->
+<view  class="bad_title">
+  拍摄故障部位
+</view>
+
+<!-- 拍摄 故障照片 -->
+<view class="photo" wx:if="{{imgUrls.length == 0}}" bindtap="chooseImage">十</view>
+ <!-- <view wx:else> -->
+  <view wx:for="{{imgUrls}}" wx:key="index" style="display:inline-block;position:relative">
+      <image bindtap="chooseImage" mode="aspectFill" src='{{item}}' class="photo" style="border:2rpx solid #fff"></image>
+      <image 
+      bindtap="chooseImage"
+      class="delete"
+      src="../../images/close.png"
+      style="width:40rpx; height:40rpx"
+      wx:if="{{imageIds}}" 
+      data-index="{{index}}"
+      >
+      </image>
+    </view>
+</view>
+
+<!-- 顶部固定提交按钮 -->
+
+
+<view class="button">
+  <button style="color:#fff;font-size:36rpx; background-color:#3fd572"  bindtap="commitFault">提交</button>
+</view>
+</view>
+

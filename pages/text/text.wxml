@@ -1,0 +1,2 @@
+<!--pages/text/text.wxml-->
+<web-view src=" https://guide.bxkuaizu.cn/index.html"></web-view>

@@ -1,0 +1,92 @@
+<!--machineStatus.wxml-->
+<!-- 用户处理页面数据，清理年 -->
+<wxs module="m1">
+     var farmat = function(data) {
+       console.log(data);
+       if(data){
+        if((data/100) >= 10){
+         return data / 100
+       }else if(data /100 < 1 ){
+        return data/100
+       }else{
+        return data / 100 +'.0'
+       }
+       }
+  }
+  module.exports = {
+    farmat:farmat,
+  };
+  </wxs>
+
+<view wx:if="false" style='display:flex;flex-direction:column;'>
+<!-- 顶部 -->
+  <view class="top_img" bindtap="toCard">
+  <view class="left">
+    <view style="margin-top:40rpx;font-size:32rpx">  
+    开通会员卡
+  </view>
+  <view style="font-size:48rpx;">
+  骑行更划算! 
+  </view>
+  </view>
+<view style="height:224rpx;width:284rpx;display:flex;justify-content:flex-end;line-height:224rpx;">
+  <image style="width:190rpx;height:204rpx;margin-top:10rpx;" src="../../images/huiyuanka/huiyuanka.png"></image>
+</view>
+    <!-- <image mode="{{mode}}" src="{{src}}"></image> -->
+    <!-- <image mode="{{mode}}" src="../../images/huiyuanka.png"></image> -->
+  </view>
+<!-- 选择骑行套餐 文字 -->
+  <view class="top-tip" catchtap="toCard">
+    <view class="choose" style="font-size:28rpx;">请选择骑行套餐</view>
+    <view class="history" style="font-size:28rpx;"  bindtap="toHistoryRidePackage"> 购买记录</view>
+  </view>
+	
+  <!-- 套餐内容 -->
+  <view wx:for="{{setMeal}}" wx:key="index"  class='content_one {(item.rideCardId && item.rideCardId == selected ? "selected" : "")}'  bindtap='select' 	data-selected="{{item.rideCardId}}" data-money="{{item.money / 100}}" style="border:{{ item.rideCardId && item.rideCardId == selected  ?  ' 4rpx solid #3fd572' : '4rpx solid #999' }}">
+    <view class="one_left">
+      <view style="font-size:36rpx;font-weight:700;">{{item.name}}</view>
+    <view style="font-size:28rpx; ">
+      可用骑行次数: {{item.maxRide ? item.maxRide + '次' : '无限制'}}<text wx:if="{{item.type == 0}}" class="item-time">(按天)</text><text wx:if="{{item.type == 1}}" class="item-time">(按周)</text><text wx:if="{{item.type == 2}}" class="item-time">(按月)</text><text wx:if="{{item.type == 3}}" class="item-time">(按季)</text><text wx:if="{{item.type == 4}}" class="item-time">(按半年)</text><text wx:if="{{item.type == 5}}" class="item-time">(按年)</text>单次{{item.timeCount ? item.timeCount + '分钟内可免费骑行' : '无限制时长免费骑行'}}  
+    </view>
+    </view>
+    <view class="one_right" style="font-weight:700;color:#3fd572;">
+    ￥{{m1.farmat(item.money) }}
+    </view>
+  </view>
+  <!-- <view class="content_one" catchtap="choose" data-choose="2" data-maney="50" style="border:{{choose == 2 ? ' 4rpx solid #3fd572': '4rpx solid #999'}}">
+    <view class="one_left" >
+      <view style="font-size:36rpx;font-weight:700; ">
+      套餐二
+    </view>
+    <view style="font-size:28rpx; " >
+    升级套餐
+    </view>
+    </view>
+    <view class="one_right" style="font-weight:700;">
+    ￥50
+    </view>
+  </view>
+  <view class="content_one" catchtap="choose" data-choose="3" data-maney="100" style="border:{{choose == 3 ? ' 4rpx solid #3fd572': '4rpx solid #999'}}">
+    <view class="one_left">
+      <view style="font-size:36rpx;font-weight:700; ">
+      套餐三
+    </view>
+    <view style="font-size:28rpx; ">
+    豪华套餐
+    </view>
+    </view>
+    <view class="one_right" style="font-weight:700;">
+    ￥100
+    </view>
+  </view> -->
+
+
+<!-- 购买须知 -->
+  <text class="pay-tip">购买须知</text>
+  <view class='explain'>
+    <text style="line-height:1.7;word-break:break-all">{{payTip}}</text>
+  </view>
+    <view class="pay-btn" style="bottom: 0 " catchtap="auth">
+    <text style="background: #3fd572;color:#fff "  class="button">开通</text>
+  </view>
+</view>

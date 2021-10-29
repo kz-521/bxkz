@@ -1,0 +1,36 @@
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  margin-top: 20rpx;
+  background: #fff;
+  width: 100%;
+  padding-left: 40rpx;
+  box-sizing: border-box;
+}
+
+.shopApply {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #edf0f2;
+  font-family: "微软雅黑";
+  font-size: 16px;
+}
+
+.checkbox{
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.checkbox checkbox{
+  transform: scale(0.7);
+}
+.authentication{
+  margin-top:30px;
+  width:85%;
+  background-color:#3fd572;
+  color:#fff
+}

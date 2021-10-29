@@ -1,0 +1,93 @@
+page{
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+.startFetch{
+  width: 100%;
+  height: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
+}
+
+
+.recogitionTip,
+.imageTip,
+.controls{
+
+  margin: 40rpx 0;
+
+  /* justify-content: center; */
+}
+.tipMessage{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.idTip{
+  font-weight: 700;
+  font-size: 36rpx;
+  margin-top: 20rpx;
+}
+.idTip,
+.tipMessage view{
+  text-align: center;
+}
+.tipMessage view{
+  margin-top: 10rpx;
+  font-size: 28rpx;
+}
+.imageTop{
+  width: 300rpx;
+  height: 300rpx;
+  margin:0 auto;
+}
+.imageTop image{
+  width: 100%;
+  height: 100%;
+}
+.imageBottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin:  50rpx auto 0 auto;
+}
+.imageBottom view{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+}
+.imageBottom text{
+  font-size: 28rpx;
+
+}
+.imageBottom view image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 20rpx;
+}
+
+
+
+
+
+.controls{
+  width: 80%;
+  margin: 40rpx auto;
+
+  /* margin-top: 50rpx; */
+}
+
+.controls .cancel{
+  padding: 25rpx;
+  text-align: center;
+  color: #666;
+
+}

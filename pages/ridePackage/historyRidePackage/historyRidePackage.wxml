@@ -1,0 +1,58 @@
+<wxs module="utilTool" src="../../../utils/tool.wxs"></wxs>
+
+<view style="overflow: hidden">
+  <view wx:for="{{orderList}}" wx:key="index" class="member-card">
+
+    <!-- 骑行卡 -->
+    <view 
+      wx:if="{{type == 0}}" 
+      class="card-item" 
+      style="background-color: {{!item.isValid?'rgb(120, 120, 120)':mainColor}};color: {{!item.isValid?'#fff':textColor}}"
+    >
+      <view>
+        <view style="display: flex;align-items: flex-end;">
+          <text style="font-size: 40rpx;font-weight:600;color:#fff">{{item.name}}</text>
+          <view style="margin-left: 5px;font-size: 26rpx;">次数:{{item.useCount}}/{{item.maxRide==0 ? '不限' : item.maxRide}}({{item.timeCount}}分钟/次)</view>
+        </view>
+        <view style="margin-top: 10rpx">{{item.buyTime}}</view>
+      </view>
+      <view style="margin-bottom:10rpx">
+        <view style="margin-bottom:4rpx;color:#fff">{{ item.isValid ? '生效中' : '已过期' }}</view>
+        <view>至 {{item.endDate}}</view>
+      </view>
+    </view> 
+
+    <!-- 免押卡 -->
+    <view wx:elif="{{type == 1}}" class="card-item" style="background-color: {{ item.isValid? mainColor : 'rgb(120, 120, 120)' }};color: {{item.overTime?'#fff':textColor}}">
+      <view>
+        <view style="font-size: 40rpx;font-weight:600;color:#fff">{{item.memberFeeName}}</view>
+        <view style="margin-top: 10rpx">{{item.buyTime}}</view>
+      </view>
+      <view style="margin-bottom:10rpx">
+        <view style="margin-bottom:4rpx;">购买金额：{{item.money / 100}}元</view>
+        <view style="margin-bottom:4rpx;color:#fff">{{ item.isValid ? '生效中' : '已过期' }}</view>
+        <view>至 {{item.expireTime}}</view>
+      </view>
+    </view>
+
+    <!-- 会员卡 -->
+    <view
+      wx:elif="{{type == 2}}"
+      class="card-item2">
+
+      <view class="card-item2-title">{{item.name}}</view>
+      <view class="card-item2-text">骑行费用{{item.discount}}折</view>
+      <view class="card-item2-text">购买时间：{{utilTool.formatTime(item.buyTime)}}</view>
+
+      <view class="card-item2-vaildDate">有效期至{{item.expireDate}}</view>
+      <view wx:if="{{item.isValid == 1}}" class="card-item2-vaildState" style="color:{{textColor}};background:{{mainColor}}">生效中</view>
+      <view wx:elif="{{item.isValid == 0}}" class="card-item2-vaildState" style="color:#fff;background:#BFBFBF;">已过期</view>
+      <view wx:elif="{{item.isValid == 2}}" class="card-item2-vaildState" style="color:#fff;background:#BFBFBF;">未生效</view>
+
+    </view>
+
+  </view>
+  <view wx:if="{{orderList.length == 0}}" class="none-data">
+    暂无数据
+  </view>
+</view>

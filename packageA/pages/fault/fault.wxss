@@ -1,0 +1,136 @@
+/* pages/maintain/maintain.wxss */
+.main{
+  width: 100%;
+  height: 1500rpx;
+  background-color: #f3f3f3;
+  box-sizing: border-box;
+  padding: 20rpx 22rpx 0 22rpx;
+}
+.item{
+  box-sizing: border-box;
+  display:inline-block;
+  width:344rpx;
+  height:100rpx;
+  border-radius:8rpx;
+  margin-bottom:12rpx;
+  
+}
+.marr12{
+  margin-right: 12rpx;
+}
+.other_item{
+  box-sizing: border-box;
+  display:inline-block;
+  width: 226rpx;
+  height:202rpx;
+  border-radius:8rpx;
+}
+.car_item{
+  width: 224rpx;
+height: 80rpx;
+line-height: 80rpx;
+background: #3FD572;
+border-radius: 8rpx;
+color: #fff;
+text-align: center;
+margin-bottom: 20rpx;
+box-sizing: border-box;
+}
+.car_item_no{
+  box-sizing: border-box;
+  width: 224rpx;
+  height: 80rpx;
+  line-height: 76rpx;
+  background: #f3f3f3;
+  border: 2rpx solid #333;
+  border-radius: 8rpx;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.saoma{
+  background-color: #fff;
+  width: 702rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding: 0 22rpx 0 20rpx;
+  display: flex;
+  margin-bottom: 40rpx;
+  border-radius: 8rpx;
+}
+.erweima{
+  /* background-color: red; */
+  height: 80rpx;
+  line-height: 80rpx;
+  color: black;
+}
+.input{
+  width: 622rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  
+}
+.bad_title{
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  /* background-color: pink; */
+  margin-bottom: 20rpx;
+}
+.bad_image_box{
+  width: 702rpx;
+  height: 426rpx;
+  box-sizing: border-box;
+  margin: 20rpx 0 12rpx 0;
+  background-color: #f3f3f3;
+  overflow: hidden;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: space-between; */
+}
+.other_bad{
+  width: 702rpx;
+  height: 196rpx;
+  box-sizing: border-box;
+  margin: 40rpx 0 ;
+  background-color: #fff;
+  padding: 32rpx 20rpx 20rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.num{
+  /* background-color:pink; */
+  font-size:20rpx;
+  color:#ddd;
+  display:flex;
+  justify-content: flex-end;
+  /* text-align: center; */
+}
+.photo{
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 116rpx;
+  text-align: center;
+  border: 2rpx dashed #999;
+  border-radius: 16rpx;
+  color: #979797;
+  background-color: #fff;
+  /* background: linear-gradient(white,white) padding-box,
+    repeating-linear-gradient(-45deg,#ccc 0, #ccc 0.25em,white 0,white 0.75em); */
+}
+.delete{
+  position:absolute;
+  right: -15rpx;
+  top: -15rpx;
+}
+
+  .button{
+    box-sizing: border-box;
+  background-color:#fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 176rpx;
+  padding: 20rpx 36rpx 76rpx 42rpx;
+}

@@ -1,0 +1,72 @@
+
+<!-- 用户处理页面数据，清理年 -->
+<wxs module="m1">
+     var clearYear = function(date) {
+    return date.substring(5)
+  }
+  module.exports = {
+    clearYear:clearYear,
+  };
+  </wxs>
+
+<view style="height:100%;background-color: #f8f8f8">
+  <view class='historyRecordWrap'>
+  <view>   
+    <view>
+    <!-- 假日期占位 -->
+      <view class="date1">
+        {{time}} 
+      </view>
+
+<!-- 账单 列表 有记录-->
+<block wx:if="{{historyRecords}}">
+  <view class="table" 
+        wx:for="{{historyRecords}}"
+        wx:key="index">
+  <!-- 图片盒子 -->
+      <view class="image_box">
+        <image class="image" src="../../images/yue.png"></image>
+      </view>
+    <view>
+  <!-- 右边盒子 -->
+  <view class="table_right">
+    <view class="right_top">
+      <view style="overflow: hidden; white-space: nowrap;text-overflow:ellipsis;margin-right:30rpx">{{item.remark}}</view>
+      <view style="color:{{item.type  ? '#3fd572' : 'red'}};white-space: nowrap;">
+        {{item.type ? '+' : '-'}}{{item.money / 100}}元
+      </view>
+    </view>
+    <view class="right_bottom">
+      <view>{{m1.clearYear(item.operaTime)}}</view>
+    </view>
+  </view>
+</view>
+  </view>
+</block>
+
+    <!--账单 列表 没有记录 -->
+    <view wx:if="{{historyRecords.length == 0}}"> 
+      <view class="nothing"> 
+        <image style="width:304rpx;height:304rpx;" src="../../images/ridingHistory/nothing.png"></image>
+      </view>
+      <view style='text-align:center'>
+        <text class="nothing_text">暂无记录</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 吸顶 日期选择器 -->
+  <view class="date" >
+        <!--文字  旋转 右边的按钮 -->
+        <picker mode = "date" 
+                fields="month" 
+                bindchange="bindTimeChange">
+                {{time}}
+          <view style="transform:rotate(90deg);display:inline-block;margin-left:12rpx;">
+            <mp-icon icon="arrow" color="black" size="{{13}}"></mp-icon>
+          </view>
+        </picker>
+      </view>
+  </view>
+</view>

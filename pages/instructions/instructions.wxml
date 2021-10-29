@@ -1,0 +1,14 @@
+<view style="overflow:hidden">
+	<view class="container">
+		<view wx:for="{{instructionArr}}" wx:key="{{index}}" class="content-item">
+			<view><image src="{{item.imgSrc}}"></image></view>
+			<view class="content-text">
+				<text>{{item.title}}</text>
+				<text>{{item.description}}</text>
+			</view>
+		</view>
+    <view>
+      <image style="height:300rpx;width:100%" src="../../images/instructions/map@2x.png"></image>
+    </view>
+	</view>
+</view>

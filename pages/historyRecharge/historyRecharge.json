@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "账单明细",
+    "usingComponents": {
+        "mp-icon": "weui-miniprogram/icon/icon"
+      }
+}

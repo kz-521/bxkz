@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true, 
+  "usingComponents": {
+    "ad-dialog": "../../components/ad-dialog/ad-dialog",
+    "mp-badge": "weui-miniprogram/badge/badge",
+    "billing": "../../components/billing/billing",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
+  }
+}
+

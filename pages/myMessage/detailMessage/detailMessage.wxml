@@ -1,0 +1,44 @@
+	<view class="messageContainer">
+		<block wx:for="{{detailData}}" wx:key="index">
+		<!-- 我的反馈 -->
+<view class="user_message">
+	<view class="text" style="font-size:32rpx;font-weight: bold;color: #333333;margin-bottom:20rpx;display:flex;">
+	我的反馈
+	<text class="time_text">{{item.createTime}}</text>
+	</view>
+	<view class="user_content" style="color:#666666">
+		{{item.title}}
+	</view>
+</view>
+	<!-- 反馈回复 -->
+	<view>
+		<view class="user_message" style="border-bottom: 0rpx solid #f0f0f0;">
+			<view class="text" style="font-size:32rpx;font-weight: bold;color: #333333;margin-bottom:20rpx;display:flex;">
+				反馈回复
+				<text class="time_text">{{item.readTime}}</text>
+			</view>
+			<view class="user_content">
+				{{item.content}}
+			</view>
+		</view>
+	</view>
+</block>
+		<!-- <view class="messageMain">
+			<view class="messageList">
+				<block wx:for="{{detailData}}" wx:key="index">
+					<view class="message-wrapper">
+						<view class="message-top">
+							<view class="message-title">{{item.title}}</view>							
+						</view>
+						<view class="message-bottom">
+							<view class="message-content">{{item.content}}</view>
+						</view>
+						<view>	
+							<view class="message-time">{{item.createTime}}</view>
+						</view>
+					</view>
+					<!-- <view class="message-line"></view> -->
+				<!-- </block>
+			</view>
+		</view> --> 
+	</view>

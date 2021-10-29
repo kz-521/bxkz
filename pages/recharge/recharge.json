@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "充值",
+    "usingComponents": {
+        "mp-icon": "weui-miniprogram/icon/icon"
+      }
+}

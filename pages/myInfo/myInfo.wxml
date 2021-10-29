@@ -1,0 +1,52 @@
+<!--myInfo.wxml-->
+<scroll-view scroll-y style="height: 100vh;overflow:hidden" >
+  <!-- 头部盒子 登录-->
+  <view class="box1">
+    <view class="info2">
+      <view class="header_pohto">
+          <!-- 用户头像 -->
+          <open-data class="active-avatar" type="userAvatarUrl"></open-data>
+      </view>
+        <!-- 手机号 -->
+      <view class="phone_num">{{phone}}</view>
+    </view>
+</view>
+
+   <!-- 主要内容 -->
+<view class="main" style="margin-top:40rpx"> 
+  <view wx:for="{{items}}"
+        wx:key='index'
+        class="main_item"
+        bindtap="toWhith"
+        data-title="{{item.index}}" 
+        data-type="0">
+   <view class="item-start" style="position:relative;">
+    <!-- <icon class="icon-box-img" type="info" size="22"></icon> -->
+    <image style="width:36rpx;height:36rpx;" src="{{item.url}}"></image>
+    <mp-badge wx:if="{{item.hasMessage}}" content="" style="position: absolute;top: -22rpx;right: 25rpx;z-index:99; width: 20rpx; height:20rpx;"/>
+   </view>
+    <view class="item-center">{{item.title}}</view>
+    <view class="item-bottom">
+      <mp-icon icon="arrow" color="#999" size="{{12}}"></mp-icon>
+    </view>
+  </view>
+</view>
+
+<!-- 登录 按钮  -->
+    <view class="quit-account-container">
+    <button bindtap='exit' 
+            class="quit-account" 
+            style="background:#3fd572;color: white;border-radius:15rpx;">退出登录</button>
+  </view>
+
+  <!-- 版本号文字 -->
+  <view class="version">{{version}}</view>
+
+  <!-- 弹出层 退出登陆-->
+  <mp-dialog title="温馨提示" 
+             show="{{dialogShow}}" 
+             bindbuttontap="tapDialogButton"
+             buttons="{{buttons}}">
+    您确定要退出当前账号吗?
+  </mp-dialog>
+</scroll-view>

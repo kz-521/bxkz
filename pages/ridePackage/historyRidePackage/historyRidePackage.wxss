@@ -1,0 +1,62 @@
+.member-card{
+  margin: 30rpx 40rpx;
+}
+
+.card-item{
+  padding: 10rpx 30rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx rgba(0,0,0,.6);
+}
+
+.card-item>view:last-child{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.card-item2 {
+  position: relative;
+  padding: 20rpx 30rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,.2);
+  background-color: #fff;
+}
+
+.card-item2-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-item2-text {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.card-item2-vaildDate {
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.card-item2-vaildState {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+  padding: 6rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+.none-data{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 50rpx;
+  color: #d0d0d0;
+  transform: translate(-50%,-50%);
+}

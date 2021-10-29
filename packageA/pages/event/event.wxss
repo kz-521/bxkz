@@ -1,0 +1,16 @@
+/* pages/event/event.wxss */
+.main{
+  box-sizing: border-box;
+  padding: 0 24rpx 0 24rpx;
+}
+.event_item{
+  width: 702rpx;
+  height: 190rpx;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.ad{
+  width: 702rpx;
+  height: 190rpx;
+}
